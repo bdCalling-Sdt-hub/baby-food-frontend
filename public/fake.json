@@ -1,0 +1,58 @@
+{
+  "products": [
+    {
+      "image": "/inner_product_01.png",
+      "title": "Bambino formula apple",
+      "ingredients": ["Strawberry", "banana", "apple"],
+      "price": 8
+    },
+    {
+      "image": "/inner_product_02.png",
+      "title": "Bambino formula apple",
+      "ingredients": ["Plum", "banana", "carrot"],
+      "price": 10
+    },
+    {
+      "image": "/inner_product_03.png",
+      "title": "Bambino formula apple",
+      "ingredients": ["Pear", "blueberry", "apple"],
+      "price": 15
+    },
+    {
+      "image": "/inner_product_01.png",
+      "title": "Bambino formula apple",
+      "ingredients": ["Strawberry", "banana", "apple"],
+      "price": 8
+    },
+    {
+      "image": "/inner_product_02.png",
+      "title": "Bambino formula apple",
+      "ingredients": ["Plum", "banana", "carrot"],
+      "price": 10
+    },
+    {
+      "image": "/inner_product_03.png",
+      "title": "Bambino formula apple",
+      "ingredients": ["Pear", "blueberry", "apple"],
+      "price": 15
+    },
+    {
+      "image": "/inner_product_01.png",
+      "title": "Bambino formula apple",
+      "ingredients": ["Strawberry", "banana", "apple"],
+      "price": 8
+    },
+    {
+      "image": "/inner_product_02.png",
+      "title": "Bambino formula apple",
+      "ingredients": ["Plum", "banana", "carrot"],
+      "price": 10
+    },
+    {
+      "image": "/inner_product_03.png",
+      "title": "Bambino formula apple",
+      "ingredients": ["Pear", "blueberry", "apple"],
+      "price": 15
+    }
+  ]
+}
