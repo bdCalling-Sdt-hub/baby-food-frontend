@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-
-const paytoneOne = localFont({
-  src: "./fonts/PaytoneOne-Regular.ttf",
-  variable: "--font-paytone-regular",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "Baby Food",
@@ -20,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={` ${paytoneOne.variable}`}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -11,8 +11,11 @@ export default function Products() {
       .then((data) => setFoods(data.products));
   }, []);
   return (
-    <div className="container">
-      <Heading className="items-center">Order our meals today</Heading>
+    <div className="container mt-28">
+      <Heading className="items-center text-center">
+        {" "}
+        Our New Arriver <br /> Products
+      </Heading>
       <div className="grid grid-cols-3 mt-20 gap-10">
         {foods.slice(0, 3).map((food, index) => (
           <div
@@ -22,8 +25,8 @@ export default function Products() {
             <img className="mx-auto" src={food.image} alt="" />
             <h2 className="text-xl">{food.title}</h2>
             <div className="flex justify-center gap-2 my-2">
-              {food.ingredients.map((item) => (
-                <p>{item}</p>
+              {food.ingredients.map((item, index) => (
+                <p key={index}>{item}</p>
               ))}
             </div>
             <h2 className="text-xl text-primary">${food.price}.00</h2>

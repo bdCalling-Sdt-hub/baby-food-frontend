@@ -6,7 +6,7 @@ const Navbar = () => {
   const path = usePathname();
   const links = [
     {
-      path: "/home",
+      path: "/",
       title: "Home",
     },
     {
@@ -27,7 +27,7 @@ const Navbar = () => {
     },
   ];
   return (
-    <div>
+    <div className={`${path !== "/" && "bg-footer"}`}>
       <div className="flex items-center justify-between container py-4">
         <div>
           <a href="http://">
@@ -42,7 +42,7 @@ const Navbar = () => {
           {links.map((link, index) => (
             <Link
               className={`tracking-wider text-white whitespace-nowrap ${
-                path === link.path ? "border-b-2 border-footer" : " "
+                path === link.path ? "border-b-2 border-primary" : " "
               }`}
               key={index}
               href={link.path}

@@ -29,7 +29,7 @@ export default function Footer() {
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#6c8738"
-            fill-opacity="1"
+            fillOpacity="1"
             d="M0,128L120,144C240,160,480,192,720,192C960,192,1200,160,1320,144L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
           ></path>
         </svg>
@@ -46,34 +46,34 @@ export default function Footer() {
                 </div>
               ))}
             </div>
-            <h2 className="text-white mt-5">
+            <p className="text-white mt-5">
               *Receive fresh tips and exclusive promotions. No spam – we
               promise.
-            </h2>
+            </p>
           </div>
           <div className="text-white">
             <h2 className="uppercase">Quick Links</h2>
             <div className="flex flex-col mt-8 gap-4">
-              <Link href="#">About us</Link>
-              <Link href="#">FAQ</Link>
-              <Link href="#">Blogs</Link>
+              <Link href="/about-us">About us</Link>
+              <Link href="/faq">FAQ</Link>
+              <Link href="/blogs">Blogs</Link>
             </div>
           </div>
           <div className="text-white">
             <h2 className="uppercase">CONTACT DETAILS</h2>
             <div className="flex flex-col mt-8 gap-4">
-              <h2 className="flex items-center gap-2">
+              <p className="flex items-center gap-2">
                 <MapPin color="#F37D2B" />
                 7110 3rd Ave, Brooklyn, New York
-              </h2>
-              <h2 className="flex items-center gap-2">
+              </p>
+              <p className="flex items-center gap-2">
                 <Phone color="#F37D2B" />
                 +2342 5446 67
-              </h2>
-              <h2 className="flex items-center gap-2">
+              </p>
+              <p className="flex items-center gap-2">
                 <Mail color="#F37D2B" />
                 abcd@gmail.com
-              </h2>
+              </p>
             </div>
           </div>
         </div>
