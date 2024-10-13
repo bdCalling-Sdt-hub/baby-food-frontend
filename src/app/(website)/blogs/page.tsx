@@ -1,7 +1,9 @@
+import Blogs from "@/components/ui/website/blogs/Blogs";
+
 const BlogsPage = () => {
   return (
     <div>
-      <h2>Blog page</h2>
+      <Blogs />
     </div>
   );
 };

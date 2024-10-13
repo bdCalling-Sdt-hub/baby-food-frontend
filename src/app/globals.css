@@ -22,3 +22,7 @@ button {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+.circle-poly {
+  clip-path: polygon(24% 14%, 75% 14%, 91% 56%, 75% 90%, 18% 91%, 3% 52%);
+}

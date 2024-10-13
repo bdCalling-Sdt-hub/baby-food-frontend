@@ -18,6 +18,31 @@ export default function Blogs() {
       title: "Veggies & Fruits",
       shortTitle: "100% Organic",
     },
+    {
+      image: "/card_image_01.jpg",
+      title: "Locally grown",
+      shortTitle: "Our Veggies are",
+    },
+    {
+      image: "/card_image_02.jpg",
+      title: "Fresh Meals",
+      shortTitle: "Check our",
+    },
+    {
+      image: "/card_image_03.jpg",
+      title: "Veggies & Fruits",
+      shortTitle: "100% Organic",
+    },
+    {
+      image: "/card_image_02.jpg",
+      title: "Fresh Meals",
+      shortTitle: "Check our",
+    },
+    {
+      image: "/card_image_03.jpg",
+      title: "Veggies & Fruits",
+      shortTitle: "100% Organic",
+    },
   ];
   return (
     <div className="mt-28">

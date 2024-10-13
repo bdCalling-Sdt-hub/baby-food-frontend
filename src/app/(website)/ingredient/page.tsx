@@ -1,7 +1,10 @@
+import Ingredient from "@/components/ui/website/ingredient/Ingredient";
+
 const IngredientPage = () => {
   return (
     <div>
-      <h2>Ingredient</h2>
+      <Ingredient />
+      <Ingredient />
     </div>
   );
 };

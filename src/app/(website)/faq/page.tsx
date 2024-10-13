@@ -1,7 +1,9 @@
+import FAQ from "@/components/ui/website/faq/FAQ";
+
 const FaqPage = () => {
   return (
     <div>
-      <h2>Faq</h2>
+      <FAQ />
     </div>
   );
 };

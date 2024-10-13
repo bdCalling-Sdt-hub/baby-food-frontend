@@ -11,13 +11,13 @@ export default function Products() {
       .then((data) => setFoods(data.products));
   }, []);
   return (
-    <div className="container mt-28">
+    <div className="container">
       <Heading className="items-center text-center">
         {" "}
         Our New Arriver <br /> Products
       </Heading>
       <div className="grid grid-cols-3 mt-20 gap-10">
-        {foods.slice(0, 3).map((food, index) => (
+        {foods.map((food, index) => (
           <ProductCard key={index} food={food} />
         ))}
       </div>

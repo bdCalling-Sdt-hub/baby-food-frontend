@@ -35,9 +35,20 @@ export default function Footer() {
         </svg>
       </div>
       <div className="bg-footer">
-        <div className="grid grid-cols-3 container gap-14 py-20">
+        <div className="grid grid-cols-3 items-center container gap-14 py-20">
           <div>
-            <div className="flex items-center gap-2">
+            <img
+              className="w-[50%] brightness-0 invert"
+              src="/logo.png"
+              alt=""
+            />
+
+            <p className="text-white mt-5">
+              *Receive fresh tips and exclusive promotions. No spam – we
+              promise.
+            </p>
+
+            <div className="flex items-center gap-2 mt-5">
               {socialLinks.map((item, index) => (
                 <div key={index} className="bg-secondary p-2 rounded-xl">
                   <a href="http://" className="text-white">
@@ -46,12 +57,8 @@ export default function Footer() {
                 </div>
               ))}
             </div>
-            <p className="text-white mt-5">
-              *Receive fresh tips and exclusive promotions. No spam – we
-              promise.
-            </p>
           </div>
-          <div className="text-white">
+          <div className="text-white mx-auto">
             <h2 className="uppercase">Quick Links</h2>
             <div className="flex flex-col mt-8 gap-4">
               <Link href="/about-us">About us</Link>
@@ -59,7 +66,7 @@ export default function Footer() {
               <Link href="/blogs">Blogs</Link>
             </div>
           </div>
-          <div className="text-white">
+          <div className="text-white mx-auto">
             <h2 className="uppercase">CONTACT DETAILS</h2>
             <div className="flex flex-col mt-8 gap-4">
               <p className="flex items-center gap-2">
