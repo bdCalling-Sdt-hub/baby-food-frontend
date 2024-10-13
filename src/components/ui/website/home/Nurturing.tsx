@@ -8,7 +8,7 @@ const Nurturing = () => {
       <div className="container grid grid-cols-2 gap-10 items-center">
         <div className="space-y-5">
           <Heading className="">
-            Nurturing your <br /> baby's needs
+            Nurturing your <br /> baby&apos;s needs
           </Heading>
           <p>
             We’ve researched hundreds of great-tasting ingredients to find the
@@ -30,7 +30,7 @@ const Nurturing = () => {
           <Button className="bg-secondary">View Our Products</Button>
         </div>
         <div className="">
-          <img className="w-[100%]" src="/love.png" alt="" />
+          <img className="w-[100%]" src="/baby-banana.png" alt="" />
         </div>
       </div>
     </div>
