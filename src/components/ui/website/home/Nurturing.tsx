@@ -30,7 +30,7 @@ const Nurturing = () => {
           <Button className="bg-secondary">View Our Products</Button>
         </div>
         <div className="">
-          <img className="w-[100%]" src="/baby-banana.png" alt="" />
+          <img alt="image" className="w-[100%]" src="/baby-banana.png" />
         </div>
       </div>
     </div>

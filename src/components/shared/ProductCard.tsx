@@ -4,7 +4,7 @@ import Button from "./Button";
 const ProductCard = ({ food }: { food: any }) => {
   return (
     <div className="text-center w-full border p-5 rounded-2xl">
-      <img className="mx-auto" src={food.image} alt="" />
+      <img alt="image" className="mx-auto" src={food.image} />
       <h2 className="text-xl">{food.title}</h2>
       <div className="flex justify-center gap-2 my-2">
         {food.ingredients.map((item: string, index: number) => (

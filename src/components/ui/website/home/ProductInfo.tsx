@@ -5,11 +5,11 @@ export default function ProductInfo() {
     <div className="mt-20">
       <div className="container grid grid-cols-2 gap-10 items-center">
         <div className="">
-          <img className="w-[90%]" src="/product.png" alt="" />
+          <img alt="image" className="w-[90%]" src="/product.png" />
         </div>
         <div className="space-y-5">
           <div className="animate-bounce">
-            <img src="/green_leaf.png" alt="" />
+            <img alt="image" src="/green_leaf.png" />
           </div>
           <h2 className="text-5xl text-black font-extrabold tracking-wider">
             Making mealtimes easy since 2015

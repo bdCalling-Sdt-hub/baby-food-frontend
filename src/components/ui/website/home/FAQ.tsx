@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Heading from "@/components/shared/Heading";
 import { Collapse } from "antd";
 import { Plus } from "lucide-react";
 
-const getItems = (panelStyle) => [
+const getItems = (panelStyle: any) => [
   {
     key: "1",
     label: <p className="font-bold text-sm">HOW LONG DO YOUR MEALS LAST?</p>,

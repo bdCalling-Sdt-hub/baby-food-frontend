@@ -38,9 +38,9 @@ export default function Footer() {
         <div className="grid grid-cols-3 items-center container gap-14 py-20">
           <div>
             <img
+              alt="image"
               className="w-[50%] brightness-0 invert"
               src="/logo.png"
-              alt=""
             />
 
             <p className="text-white mt-5">

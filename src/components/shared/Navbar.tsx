@@ -32,9 +32,9 @@ const Navbar = () => {
         <div>
           <a href="http://">
             <img
+              alt="image"
               className="w-[20%] brightness-0 invert"
               src="/logo.png"
-              alt=""
             />
           </a>
         </div>

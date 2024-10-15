@@ -10,7 +10,7 @@ export default function Heading({
   return (
     <div className={`flex flex-col justify-center ${className}`}>
       <div className="animate-bounce">
-        <img src="/green_leaf.png" alt="" />
+        <img alt="image" src="/green_leaf.png" />
       </div>
       <h2 className="text-5xl text-black font-extrabold tracking-wider">
         {children}
