@@ -77,7 +77,7 @@ const FAQ = () => {
     fontSize: "14px",
   };
   return (
-    <div className="container mt-28">
+    <div className="container mt-28 mb-20 md:">
       <Heading className="items-center text-center">
         Your Questions, <br /> Answered
       </Heading>

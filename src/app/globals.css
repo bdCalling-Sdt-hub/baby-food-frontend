@@ -25,6 +25,7 @@ button {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position: center;
 }
 
 .ant-table-wrapper .ant-table-thead > tr > th,

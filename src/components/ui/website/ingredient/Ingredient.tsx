@@ -5,7 +5,7 @@ const Ingredient = () => {
   return (
     <div className="container mt-14">
       <Heading className="items-center mb-20">As Fresh As It Gets</Heading>
-      <div className="grid grid-cols-12 items-center">
+      <div className="md:grid grid-cols-12 items-center">
         <div className="col-span-3">
           <div className="flex flex-col gap-5">
             <div className="bg-[#829f01] w-full h-60 rounded-[50px] rounded-br-none relative">

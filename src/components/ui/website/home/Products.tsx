@@ -16,7 +16,7 @@ export default function Products() {
         {" "}
         Our New Arriver <br /> Products
       </Heading>
-      <div className="grid grid-cols-3 mt-20 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-20 gap-10">
         {foods.slice(0, 3).map((food, index) => (
           <ProductCard key={index} food={food} />
         ))}

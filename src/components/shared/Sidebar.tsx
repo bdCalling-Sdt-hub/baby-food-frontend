@@ -106,9 +106,9 @@ const Sidebar = () => {
               <Image
                 src="/logo.png"
                 alt=""
-                className="brightness-0 invert"
-                height={10}
-                width={170}
+                className="brightness-0 invert w-[120px]"
+                height={100}
+                width={500}
               />
             </Link>
           </div>

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Form, Input, Modal } from "antd";
-import { Image } from "lucide-react";
+import { ImageIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import TextInput from "../shared/TextInput";
@@ -124,7 +124,7 @@ const AddBlogModal = ({
                         alt=""
                       />
                     ) : (
-                      <Image />
+                      <ImageIcon />
                     )}
                   </div>
 

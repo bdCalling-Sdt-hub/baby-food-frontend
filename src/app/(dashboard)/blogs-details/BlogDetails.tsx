@@ -104,6 +104,7 @@ const BlogDetails = () => {
       render: (_: any, record: any) => (
         <div className=" flex items-center gap-1">
           <img
+            alt=""
             src={record?.BlogImage}
             style={{
               height: "65px",

@@ -45,13 +45,15 @@ export default function Blogs() {
     },
   ];
   return (
-    <div className="mt-28">
+    <div className="md:mt-28">
       <div className="container grid grid-cols-12 gap-5">
-        <div className="col-span-3">
-          <Heading>Healthy food from farm to spoon</Heading>
+        <div className="col-span-12 md:col-span-3">
+          <Heading className="text-center md:text-start">
+            Healthy food from farm to spoon
+          </Heading>
         </div>
-        <div className="col-span-9">
-          <div className="grid grid-cols-3 gap-7">
+        <div className="col-span-12 md:col-span-9">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7">
             {blogs.map((blog, index) => (
               <BlogCard key={index} blog={blog} />
             ))}

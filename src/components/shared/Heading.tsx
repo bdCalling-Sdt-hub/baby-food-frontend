@@ -9,10 +9,10 @@ export default function Heading({
 }) {
   return (
     <div className={`flex flex-col justify-center ${className}`}>
-      <div className="animate-bounce">
+      <div className="animate-bounce mx-auto md:mx-0">
         <img alt="image" src="/green_leaf.png" />
       </div>
-      <h2 className="text-5xl text-black font-extrabold tracking-wider">
+      <h2 className="text-3xl md:text-5xl text-black font-extrabold tracking-wider">
         {children}
       </h2>
     </div>

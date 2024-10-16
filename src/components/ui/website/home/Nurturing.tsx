@@ -5,8 +5,8 @@ import { CircleCheck } from "lucide-react";
 const Nurturing = () => {
   return (
     <div className="mt-28">
-      <div className="container grid grid-cols-2 gap-10 items-center">
-        <div className="space-y-5">
+      <div className="container grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div className="space-y-5 text-center md:text-start">
           <Heading className="">
             Nurturing your <br /> baby&apos;s needs
           </Heading>
@@ -27,7 +27,7 @@ const Nurturing = () => {
               )
             )}
           </div>
-          <Button className="bg-secondary">View Our Products</Button>
+          <Button className="bg-secondary my-4">View Our Products</Button>
         </div>
         <div className="">
           <img alt="image" className="w-[100%]" src="/baby-banana.png" />

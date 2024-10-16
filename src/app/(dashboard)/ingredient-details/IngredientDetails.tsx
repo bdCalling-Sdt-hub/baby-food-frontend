@@ -144,6 +144,7 @@ const IngredientDetails = () => {
       render: (_: any, record: any) => (
         <div className=" flex items-center gap-1">
           <img
+            alt=""
             src={record?.image}
             style={{ height: "35px", width: "35px", borderRadius: "100%" }}
           />

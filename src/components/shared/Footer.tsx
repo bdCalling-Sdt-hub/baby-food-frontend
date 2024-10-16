@@ -25,7 +25,7 @@ export default function Footer() {
   ];
   return (
     <>
-      <div className="-mb-[100px]">
+      <div className="-mb-[100px] mt-5">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#6c8738"
@@ -34,12 +34,12 @@ export default function Footer() {
           ></path>
         </svg>
       </div>
-      <div className="bg-footer">
-        <div className="grid grid-cols-3 items-center container gap-14 py-20">
+      <div className="bg-footer text-center md:text-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 justify-center  items-center container gap-14 py-20">
           <div>
             <img
               alt="image"
-              className="w-[50%] brightness-0 invert"
+              className="w-[50%] mx-auto md:mx-0 brightness-0 invert"
               src="/logo.png"
             />
 
@@ -48,7 +48,7 @@ export default function Footer() {
               promise.
             </p>
 
-            <div className="flex items-center gap-2 mt-5">
+            <div className="flex items-center justify-center md:justify-start gap-2 mt-5">
               {socialLinks.map((item, index) => (
                 <div key={index} className="bg-secondary p-2 rounded-xl">
                   <a href="http://" className="text-white">

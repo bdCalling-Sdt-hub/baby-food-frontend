@@ -4,32 +4,39 @@ import { HandCoins } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <div className="hero_container relative">
+    <div className="hero_container bg-center md:bg-top relative">
       <Navbar />
-      <div className="container grid grid-cols-2 items-center h-screen -mt-32">
-        <div>
-          <h2 className={` text-7xl text-white font-bold tracking-wider`}>
+
+      <div className="container grid grid-cols-1 md:grid-cols-2 items-center h-screen -mt-16 md:-mt-32 px-4 md:px-0">
+        <div className="text-center md:text-left flex flex-col items-center md:items-start">
+          <h2 className="text-5xl md:text-7xl text-white font-bold tracking-wider">
             Fresh Meals <br /> For Little Ones
           </h2>
-          <div className="flex items-center mt-10">
-            <div className="border-r pr-5 mr-5">
+
+          <div className="flex flex-col md:flex-row items-center mt-6 md:mt-10">
+            <div className="border-r md:pr-5 md:mr-5 mb-4 md:mb-0">
               <HandCoins color="#fff" size={70} />
             </div>
             <div>
-              <h2 className="text-2xl font-bold tracking-wider text-white">
+              <h2 className="text-xl md:text-2xl font-bold tracking-wider text-white">
                 100% organic
               </h2>
-              <p className="text-white text-md">
-                All our ingredients come from trusted partner farms <br /> who
-                are EU certified organic
+              <p className="text-white text-sm md:text-md">
+                All our ingredients come from trusted partner farms{" "}
+                <br className="hidden md:block" /> who are EU certified organic
               </p>
             </div>
           </div>
-          <Button className="bg-primary mt-10">Learn More</Button>
+
+          <Button className="bg-primary mt-6 md:mt-10 w-full md:w-auto">
+            Learn More
+          </Button>
         </div>
-        <div></div>
+
+        <div className="mt-10 md:mt-0"></div>
       </div>
-      <div className="absolute bottom-0 left-0  w-full">
+
+      <div className="absolute bottom-0 left-0 w-full">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
           <path
             fill="#fff"

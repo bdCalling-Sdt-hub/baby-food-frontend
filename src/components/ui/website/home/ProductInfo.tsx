@@ -3,15 +3,19 @@ import Button from "@/components/shared/Button";
 export default function ProductInfo() {
   return (
     <div className="mt-20">
-      <div className="container grid grid-cols-2 gap-10 items-center">
+      <div className="container  grid grid-cols-1 md:grid-cols-2 justify-center gap-10 items-center">
         <div className="">
           <img alt="image" className="w-[90%]" src="/product.png" />
         </div>
-        <div className="space-y-5">
+        <div className="space-y-5 text-center md:text-start">
           <div className="animate-bounce">
-            <img alt="image" src="/green_leaf.png" />
+            <img
+              className="mx-auto md:mx-0"
+              alt="image"
+              src="/green_leaf.png"
+            />
           </div>
-          <h2 className="text-5xl text-black font-extrabold tracking-wider">
+          <h2 className="text-3xl md:text-5xl text-black font-extrabold tracking-wider">
             Making mealtimes easy since 2015
           </h2>
           <p className="text-secondary">ORGANIC BABY FOOD</p>
