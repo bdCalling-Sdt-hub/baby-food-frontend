@@ -25,6 +25,10 @@ const Navbar = () => {
       path: "/contact",
       title: "Contact",
     },
+    {
+      path: "/products-details",
+      title: "Dashboard",
+    },
   ];
   return (
     <div className={`${path !== "/" && "bg-footer"}`}>

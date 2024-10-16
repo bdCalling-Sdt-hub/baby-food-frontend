@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 
-interface propsType{
-    children:React.ReactNode ,
-    className:string
+interface propsType {
+  children: React.ReactNode;
+  className?: string;
 }
-const DashboardTitle = ({children , className}:propsType) => {
-    return <p className={`text-2xl text-[#222222] font-[450] p-4 ps-0 pb-2 underline decoration-primary  underline-offset-8 ${className}`} > {children}</p>
+const DashboardTitle = ({ children, className }: propsType) => {
+  return (
+    <h2 className={`text-3xl text-[#222222] ${className}`}> {children}</h2>
+  );
 };
 
 export default DashboardTitle;

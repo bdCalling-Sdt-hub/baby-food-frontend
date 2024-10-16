@@ -1,22 +1,20 @@
 "use client";
+import { Dropdown, Space } from "antd";
 import Link from "next/link";
-import { MdLogout, MdProductionQuantityLimits } from "react-icons/md";
-import { IoMdCheckmarkCircleOutline, IoMdContacts, IoMdPerson } from "react-icons/io";
-import {
-  IoDocumentAttachOutline,
-  IoPeopleOutline,
-  IoVideocamOutline,
-} from "react-icons/io5";
 import { usePathname, useRouter } from "next/navigation";
-import { Dropdown, Space, Menu } from "antd";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { GrMoney } from "react-icons/gr";
-import { FaQuestion } from "react-icons/fa6";
 
 import { MenuProps } from "antd";
+import {
+  Captions,
+  Contact,
+  FileQuestion,
+  LayoutGrid,
+  LayoutList,
+  LogOut,
+  Package,
+  ShoppingBasket,
+} from "lucide-react";
 import Image from "next/image";
-import { GoPackage } from "react-icons/go";
-import { RiBloggerLine } from "react-icons/ri";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -32,43 +30,43 @@ const Sidebar = () => {
     {
       title: "Products",
       path: "/products-details",
-      icon: <MdProductionQuantityLimits size={24} />,
+      icon: <LayoutGrid />,
     },
     {
       title: "Ingredient",
       path: "/ingredient-details",
-      icon: <GrMoney size={24} />,
+      icon: <ShoppingBasket />,
     },
     {
       title: "Sustainability & Packaging",
       path: "/sustainability-packaging-details",
-      icon: <GoPackage size={24} />,
+      icon: <Package />,
     },
     {
       title: "Contact",
       path: "/contact-details",
-      icon: <IoMdContacts size={24} />,
+      icon: <Contact />,
     },
     {
       title: "About Us",
       path: "/about-details",
-      icon: <IoPeopleOutline size={24} />,
+      icon: <Captions />,
     },
     {
       title: "FAQ",
       path: "/faq-details",
-      icon: <FaQuestion size={24} />,
+      icon: <FileQuestion />,
     },
     {
       title: "Blogs",
       path: "/blogs-details",
-      icon: <RiBloggerLine  size={24} />,
+      icon: <LayoutList />,
     },
 
     {
       title: "Log Out",
       path: "/login",
-      icon: <MdLogout size={24} />,
+      icon: <LogOut size={24} />,
     },
   ];
 
@@ -84,8 +82,8 @@ const Sidebar = () => {
               : "bg-transparent text-black"
           } items-center gap-[14px] px-3 py-2 rounded-[5px] font-normal`}
         >
-          <div className="h-[24px]">{item.icon}</div>
-          <div className="text-[16px]">{item.title}</div>
+          <div>{item.icon}</div>
+          <div>{item.title}</div>
         </Link>
       ),
     };
@@ -94,7 +92,7 @@ const Sidebar = () => {
   return (
     <div>
       <div
-        className="lg:h-[110vh] lg:fixed lg:bg-[#F7F7F7]"
+        className="lg:h-[110vh] lg:fixed lg:bg-[#6c8738]"
         style={{
           overflow: "auto",
           overflowY: "hidden",
@@ -105,16 +103,20 @@ const Sidebar = () => {
         <div className="logo flex items-center justify-between lg:justify-center gap-2 lg:mt-[30px] lg:mb-[20px] mt-[10px] mx-3  border-b-2 py-3 lg:border-none">
           <div>
             <Link href="/">
-              <Image src="/logo.png" alt="" height={10} width={170} />
+              <Image
+                src="/logo.png"
+                alt=""
+                className="brightness-0 invert"
+                height={10}
+                width={170}
+              />
             </Link>
           </div>
 
           <div className="lg:hidden block">
             <Dropdown menu={{ items: menuItems }}>
               <a onClick={(e) => e.preventDefault()}>
-                <Space>
-                  <RxHamburgerMenu size={20} />
-                </Space>
+                <Space>h</Space>
               </a>
             </Dropdown>
           </div>
@@ -150,15 +152,13 @@ const Sidebar = () => {
                       display: "flex",
                       width: "100%",
                       backgroundColor:
-                        item.path === pathname ? "#89a809" : "transparent",
-                      color: item.path === pathname ? "#fff" : "#222222",
+                        item.path === pathname ? "#F37D2B" : "transparent",
+                      color: item.path === pathname ? "#fff" : "#fff",
                       alignItems: "center",
-                      margin: "auto  0 auto 0",
                       gap: "14px",
-                      padding: "7px 14px 7px",
-                     
+                      padding: "10px 10px",
                       fontWeight: "400",
-                    }} 
+                    }}
                     className="rounded-full rounded-tl-none tracking-wide"
                   >
                     <div style={{ height: "24px" }}>{item.icon}</div>
