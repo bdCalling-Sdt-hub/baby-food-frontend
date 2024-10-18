@@ -16,7 +16,9 @@ export default function HomePage() {
       <Ingredient />
       <Nurturing />
       <Blogs />
-      <FAQ />
+      <div className="bg-faq">
+        <FAQ />
+      </div>
       <Footer />
     </div>
   );

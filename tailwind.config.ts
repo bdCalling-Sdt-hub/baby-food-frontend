@@ -12,6 +12,8 @@ const config: Config = {
         primary: "#89a809",
         secondary: "#F37D2B",
         footer: "#6c8738",
+        product: "#FFEBB1",
+        faq: "#D4F2FF",
       },
     },
     container: {
@@ -24,6 +26,9 @@ const config: Config = {
       screens: {
         "2xl": "1300px",
       },
+    },
+    animation: {
+      "custom-ping": "ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite",
     },
   },
   plugins: [],

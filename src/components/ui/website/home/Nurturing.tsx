@@ -1,36 +1,44 @@
 import Button from "@/components/shared/Button";
 import Heading from "@/components/shared/Heading";
-import { CircleCheck } from "lucide-react";
+import Link from "next/link";
 
 const Nurturing = () => {
   return (
-    <div className="mt-28">
+    <div className="my-28">
       <div className="container grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        {/* Image first on mobile, last on larger screens */}
+        <div className="order-first md:order-last">
+          <img alt="image" className="w-[100%]" src="/baby-banana.png" />
+        </div>
+
+        {/* Text section */}
         <div className="space-y-5 text-center md:text-start">
           <Heading className="">
-            Nurturing your <br /> baby&apos;s needs
+            Nourish,
+            <br />
+            Enjoy, Repeat
           </Heading>
           <p>
-            We’ve researched hundreds of great-tasting ingredients to find the
-            ones that really pack a nutritional punch – so you don’t have to! We
-            only use organic ingredients – no nasties! It’s guilt-free goodness!
+            We envision a world where parents can focus on enjoying mealtime
+            with their babies, knowing they are providing high-quality, fresh
+            food that supports healthy development.
           </p>
-          <div>
-            {["100% Organic", "Non gmo", "Wholesome ingredients"].map(
-              (item, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <span>
-                    <CircleCheck fill="#89a809" color="#fff" />
-                  </span>
-                  <span>{item}</span>
-                </div>
-              )
-            )}
+          <div className="flex items-center justify-center md:justify-start gap-4">
+            {[
+              "/vegan.png",
+              "gluten-free.png",
+              "/natural.png",
+              "/cruelty-free.png",
+            ].map((item, index) => (
+              <div key={index} className="flex items-center gap-2">
+                <img className="size-[70px] block" src={item} alt="" />
+              </div>
+            ))}
           </div>
-          <Button className="bg-secondary my-4">View Our Products</Button>
-        </div>
-        <div className="">
-          <img alt="image" className="w-[100%]" src="/baby-banana.png" />
+          <br />
+          <Link className="mt-12" href={"/products"}>
+            <Button className="bg-secondary">View Our Products</Button>
+          </Link>
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ export default function Footer() {
   ];
   return (
     <>
-      <div className="-mb-[100px] mt-5">
+      <div className="-mb-[80px] md:-mt-[140px]">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#6c8738"

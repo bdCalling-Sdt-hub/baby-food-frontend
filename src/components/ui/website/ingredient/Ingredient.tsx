@@ -4,7 +4,10 @@ import { Apple, Droplets, HandPlatter, MapPin } from "lucide-react";
 const Ingredient = () => {
   return (
     <div className="container mt-14">
-      <Heading className="items-center mb-20">As Fresh As It Gets</Heading>
+      <Heading className="items-center mb-20 mx-auto text-center">
+        100% Organic <br />
+        Convenient & Nutritious
+      </Heading>
       <div className="md:grid grid-cols-12 items-center">
         <div className="col-span-3">
           <div className="flex flex-col gap-5">

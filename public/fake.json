@@ -1,58 +1,67 @@
 {
   "products": [
     {
-      "image": "/inner_product_01.png",
-      "title": "Bambino formula apple",
-      "ingredients": ["Strawberry", "banana", "apple"],
-      "price": 8
+      "image": "/product-new.png",
+      "title": "Chickpea Banana",
+      "ingredients": ["Chickpeas", "banana", "apple"],
+      "price": 8,
+      "description": "A nutrient-rich blend perfect for babies, combining chickpeas and bananas for a deliciously creamy texture."
     },
     {
-      "image": "/inner_product_02.png",
+      "image": "/product-new.png",
+      "title": "Butternut Squash",
+      "ingredients": ["Butternut squash", "banana", "carrot"],
+      "price": 10,
+      "description": "This blend features butternut squash, rich in vitamin A, along with sweet bananas and carrots, making it a nutritious choice for little ones."
+    },
+    {
+      "image": "/product-new.png",
+      "title": "Apple Cinnamon",
+      "ingredients": ["Apple", "cinnamon", "pear"],
+      "price": 15,
+      "description": "A delightful mix of apples and pears with a hint of cinnamon, promoting digestion while being naturally sweet."
+    },
+    {
+      "image": "/product-new.png",
+      "title": "Broccoli Zucchini",
+      "ingredients": ["Broccoli", "zucchini", "apple"],
+      "price": 8,
+      "description": "Packed with vitamins, this blend includes broccoli and zucchini for a savory taste, complemented by the sweetness of apples."
+    },
+    {
+      "image": "/product-new.png",
       "title": "Bambino formula apple",
       "ingredients": ["Plum", "banana", "carrot"],
-      "price": 10
+      "price": 10,
+      "description": "This formula features a mix of plums, bananas, and carrots, providing essential nutrients for growing babies."
     },
     {
-      "image": "/inner_product_03.png",
+      "image": "/product-new.png",
       "title": "Bambino formula apple",
       "ingredients": ["Pear", "blueberry", "apple"],
-      "price": 15
+      "price": 15,
+      "description": "A delicious combination of pears, blueberries, and apples, offering antioxidants and vitamins in every spoonful."
     },
     {
-      "image": "/inner_product_01.png",
+      "image": "/product-new.png",
       "title": "Bambino formula apple",
       "ingredients": ["Strawberry", "banana", "apple"],
-      "price": 8
+      "price": 8,
+      "description": "This tasty blend of strawberries, bananas, and apples is packed with flavor and nutrition for little ones."
     },
     {
-      "image": "/inner_product_02.png",
+      "image": "/product-new.png",
       "title": "Bambino formula apple",
       "ingredients": ["Plum", "banana", "carrot"],
-      "price": 10
+      "price": 10,
+      "description": "A wholesome mix of plums, bananas, and carrots, providing essential vitamins for a healthy start."
     },
     {
-      "image": "/inner_product_03.png",
+      "image": "/product-new.png",
       "title": "Bambino formula apple",
       "ingredients": ["Pear", "blueberry", "apple"],
-      "price": 15
-    },
-    {
-      "image": "/inner_product_01.png",
-      "title": "Bambino formula apple",
-      "ingredients": ["Strawberry", "banana", "apple"],
-      "price": 8
-    },
-    {
-      "image": "/inner_product_02.png",
-      "title": "Bambino formula apple",
-      "ingredients": ["Plum", "banana", "carrot"],
-      "price": 10
-    },
-    {
-      "image": "/inner_product_03.png",
-      "title": "Bambino formula apple",
-      "ingredients": ["Pear", "blueberry", "apple"],
-      "price": 15
+      "price": 15,
+      "description": "A delightful blend of pear, blueberry, and apple, rich in flavor and nutrients for baby’s growth."
     }
   ]
 }
