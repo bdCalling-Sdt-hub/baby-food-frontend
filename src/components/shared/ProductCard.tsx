@@ -7,12 +7,20 @@ const ProductCard = ({ food }: { food: any }) => {
 
   return (
     <div className="text-center relative w-full h-full md:p-5 rounded-2xl flex flex-col">
-      <img
-        alt="product"
-        className="mx-auto w-[100px] md:w-[300px] h-[200px] md:h-[400px] -mb-8"
-        src={food.image}
-      />
-      <h2 className="text-lg md:text-xl">{food.title}</h2>
+      <div className="relative">
+        <img
+          alt="product"
+          className="mx-auto z-[10] w-full rounded relative"
+          src={food.image}
+        />
+        <img
+          className="w-[80%] mx-auto absolute -bottom-10 left-16 right-0 z-[5]"
+          src={food.image2}
+          alt=""
+        />
+      </div>
+
+      <h2 className="text-lg md:text-xl mt-5">{food.title}</h2>
 
       <div className="my-2">
         <p className="font-semibold">Ingredients:</p>
