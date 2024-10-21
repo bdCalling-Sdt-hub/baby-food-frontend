@@ -1,7 +1,7 @@
 const SustainabilityPage = () => {
   return (
-    <div className=" ">
-      <h2 className="text-2xl">Sustainability at Cove Valley</h2>
+    <div className="tracking-wide ">
+      <h2 className="text-2xl mb-20">Sustainability at Cove Valley</h2>
       <p className="mt-5">
         At Cove Valley, we believe in making choices that are not only good for
         babies but also good for the planet. Currently, our focus is on sourcing

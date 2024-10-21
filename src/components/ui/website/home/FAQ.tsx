@@ -1,17 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Heading from "@/components/shared/Heading";
-import { Collapse } from "antd";
+import { Collapse, ConfigProvider } from "antd";
 import { Plus } from "lucide-react";
 
 const getItems = (panelStyle: any) => [
   {
     key: "1",
-    label: (
-      <p className="font-bold text-sm uppercase">How do I use the cubes?</p>
-    ),
+    label: <p className="font-bold text- uppercase">How do I use the cubes?</p>,
     children: (
-      <p className="text-md">
+      <p className="text-lg tracking-wider">
         Our frozen baby food cubes are designed to make mealtime simple and
         stress-free. Just pop out the desired number of cubes and:
         <br />
@@ -31,12 +29,12 @@ const getItems = (panelStyle: any) => [
   {
     key: "2",
     label: (
-      <p className="font-bold text-sm uppercase">
+      <p className="font-bold text- uppercase">
         Are the products allergen-free?
       </p>
     ),
     children: (
-      <p className="text-md">
+      <p className="text-lg tracking-wider">
         We prioritize using simple, whole ingredients in our cubes, and we take
         care to avoid common allergens. However, we recommend checking the
         ingredient lists carefully for any potential sensitivities. If you have
@@ -49,12 +47,12 @@ const getItems = (panelStyle: any) => [
   {
     key: "3",
     label: (
-      <p className="font-bold text-sm uppercase">
+      <p className="font-bold text- uppercase">
         Where do you source your ingredients?
       </p>
     ),
     children: (
-      <p className="text-md">
+      <p className="text-lg tracking-wider">
         At Cove Valley, we source our ingredients from trusted, certified
         organic farms. We work closely with local and sustainable farmers to
         ensure our fruits and vegetables are grown without pesticides or harmful
@@ -67,12 +65,12 @@ const getItems = (panelStyle: any) => [
   {
     key: "4",
     label: (
-      <p className="font-bold text-sm uppercase">
+      <p className="font-bold text- uppercase">
         What makes frozen baby food better?
       </p>
     ),
     children: (
-      <p className="text-md">
+      <p className="text-lg tracking-wider">
         Freezing is a natural way to preserve the nutrients, flavour, and
         freshness of our organic ingredients. We flash-freeze our purees at peak
         freshness, locking in essential vitamins and minerals without the need
@@ -85,12 +83,12 @@ const getItems = (panelStyle: any) => [
   {
     key: "5",
     label: (
-      <p className="font-bold text-sm uppercase">
+      <p className="font-bold text- uppercase">
         How long can I store the cubes?
       </p>
     ),
     children: (
-      <p className="text-md">
+      <p className="text-lg tracking-wider">
         Our baby food cubes can be stored in the freezer for up to 3 months. To
         ensure the best taste and quality, we recommend using them within this
         timeframe.
@@ -101,12 +99,12 @@ const getItems = (panelStyle: any) => [
   {
     key: "6",
     label: (
-      <p className="font-bold text-sm uppercase">
+      <p className="font-bold text- uppercase">
         How many cubes should I use per meal?
       </p>
     ),
     children: (
-      <p className="text-md">
+      <p className="text-lg tracking-wider">
         Each cube is perfectly portioned for convenience. For younger babies,
         you may only need one or two cubes per meal, while older babies with
         larger appetites may require more. You can easily adjust based on your
@@ -118,12 +116,12 @@ const getItems = (panelStyle: any) => [
   {
     key: "7",
     label: (
-      <p className="font-bold text-sm uppercase">
+      <p className="font-bold text- uppercase">
         Do your cubes contain any additives or preservatives?
       </p>
     ),
     children: (
-      <p className="text-md">
+      <p className="text-lg tracking-wider">
         No, our cubes are made from only a few simple, organic ingredients. We
         never use additives, preservatives, or fillers, so you can feel
         confident that your baby is getting pure, wholesome food.
@@ -134,10 +132,10 @@ const getItems = (panelStyle: any) => [
   {
     key: "8",
     label: (
-      <p className="font-bold text-sm uppercase">Are your products organic?</p>
+      <p className="font-bold text- uppercase">Are your products organic?</p>
     ),
     children: (
-      <p className="text-md">
+      <p className="text-lg tracking-wider">
         Yes, all of our ingredients are organic, ensuring that every cube is
         free from harmful chemicals.
       </p>
@@ -147,12 +145,12 @@ const getItems = (panelStyle: any) => [
   {
     key: "9",
     label: (
-      <p className="font-bold text-sm uppercase">
+      <p className="font-bold text- uppercase">
         Can I mix the cubes with other foods?
       </p>
     ),
     children: (
-      <p className="text-md">
+      <p className="text-lg tracking-wider">
         Absolutely! You can easily mix our cubes with other foods like oatmeal,
         yogurt, or grains to create a balanced and varied meal for your baby.
       </p>
@@ -171,19 +169,29 @@ const FAQ = () => {
     fontSize: "14px",
   };
   return (
-    <div className=" py-10 ">
+    <div className=" text-[#d1e3b7] py-10 ">
       <div className="container ">
         <Heading className="items-center text-center">
           Your Questions, <br /> Answered
         </Heading>
-        <div className="mt-12">
-          <Collapse
-            bordered={false}
-            items={getItems(panelStyle)}
-            expandIconPosition="end"
-            expandIcon={() => <Plus color="#F37D2B" />}
-            size="large"
-          />
+        <div className="my-5">
+          <ConfigProvider
+            theme={{
+              components: {
+                Collapse: {
+                  // headerBg: "#d1e3b7",
+                },
+              },
+            }}
+          >
+            <Collapse
+              bordered={false}
+              items={getItems(panelStyle)}
+              expandIconPosition="end"
+              expandIcon={() => <Plus color="#d1e3b7" />}
+              size="large"
+            />
+          </ConfigProvider>
         </div>
       </div>
     </div>

@@ -25,16 +25,16 @@ export default function Footer() {
   ];
   return (
     <>
-      <div className="-mb-[80px] md:-mt-[140px]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <div className="">
+        {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
-            fill="#6c8738"
+            fill="#F16763"
             fillOpacity="1"
             d="M0,128L120,144C240,160,480,192,720,192C960,192,1200,160,1320,144L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
           ></path>
-        </svg>
+        </svg> */}
       </div>
-      <div className="bg-footer text-center md:text-start">
+      <div className="bg-[#F16763] text-center md:text-start">
         <div className="grid grid-cols-1 md:grid-cols-3 justify-center  items-center container gap-14 py-20">
           <div>
             <img
@@ -50,8 +50,8 @@ export default function Footer() {
 
             <div className="flex items-center justify-center md:justify-start gap-2 mt-5">
               {socialLinks.map((item, index) => (
-                <div key={index} className="bg-secondary p-2 rounded-xl">
-                  <a href="http://" className="text-white">
+                <div key={index} className="bg-white p-2 rounded-xl">
+                  <a href="http://" className="text-red-500">
                     {item.icon}
                   </a>
                 </div>
@@ -70,15 +70,15 @@ export default function Footer() {
             <h2 className="uppercase">CONTACT DETAILS</h2>
             <div className="flex flex-col mt-8 gap-4">
               <p className="flex items-center gap-2">
-                <MapPin color="#F37D2B" />
+                <MapPin color="#fff" />
                 7110 3rd Ave, Brooklyn, New York
               </p>
               <p className="flex items-center gap-2">
-                <Phone color="#F37D2B" />
+                <Phone color="#fff" />
                 +2342 5446 67
               </p>
               <p className="flex items-center gap-2">
-                <Mail color="#F37D2B" />
+                <Mail color="#fff" />
                 abcd@gmail.com
               </p>
             </div>

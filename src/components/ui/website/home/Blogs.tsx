@@ -4,28 +4,28 @@ import Heading from "@/components/shared/Heading";
 export default function Blogs() {
   const blogs = [
     {
-      image: "/card_image_01.jpg",
+      image: "/blog1.png",
       title: "Locally grown",
       shortTitle: "Our Veggies are",
     },
     {
-      image: "/card_image_02.jpg",
+      image: "/blog2.png",
       title: "Fresh Meals",
       shortTitle: "Check our",
     },
     {
-      image: "/card_image_03.jpg",
+      image: "/blog3.png",
       title: "Veggies & Fruits",
       shortTitle: "100% Organic",
     },
   ];
   return (
-    <div className="bg-[#EBE0EF] md:py-32 py-5">
+    <div className="bg-[#e9dfec] text-[#a78aaf] md:py-32 py-5">
       <div className="md:mt-28">
-        <div className="container md:grid grid-cols-12 gap-5">
+        <div className="container md:grid grid-cols-12 items-start gap-5">
           <div className="col-span-3 my-5">
             <Heading className="text-center md:text-start">
-              Farm-Fresh Nutrition in Every Bite Or From Farm to Freezer
+              Farm-Fresh Nutrition <br /> in Every <br /> Bitte
             </Heading>
           </div>
           <div className="col-span-9">

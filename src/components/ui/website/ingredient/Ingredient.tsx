@@ -1,37 +1,31 @@
-import Heading from "@/components/shared/Heading";
-import { Apple, Droplets, HandPlatter, MapPin } from "lucide-react";
-
 const Ingredient = () => {
   return (
-    <div className="container mt-14">
-      <Heading className="items-center mb-20 mx-auto text-center">
-        100% Organic <br />
-        Convenient & Nutritious
-      </Heading>
-      <div className="md:grid grid-cols-12 items-center">
+    <div className="container my-32">
+      <div className=" text-center mx-auto">
+        <h1 className="text-[#f8b418] text-3xl md:text-6xl text-center">
+          100% Organic Convenient & Nutritious
+        </h1>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-12 space-y-4 mt-8  items-center">
         <div className="col-span-3">
           <div className="flex flex-col gap-5">
-            <div className="bg-[#829f01] w-full h-60 rounded-[50px] rounded-br-none relative">
+            <div className="bg-[#aae100] w-full h-56 rounded-[50px] rounded-br-none relative">
               <div className="flex items-center justify-center h-full w-full">
                 <div>
-                  <div className=" bg-white w-16 h-16 flex justify-center items-center  rounded-full mx-auto mb-3">
-                    <Droplets fill="#829f01" size={40} />
-                  </div>
                   <h2 className="text-white text-2xl text-center">
-                    Cold pressed <br /> & always fresh
+                    Rich in essential nutrients
                   </h2>
+                  <img className="size-[120px] m-auto" src="/ing1.png" alt="" />
                 </div>
               </div>
             </div>
-            <div className="bg-orange-600 w-full h-60 rounded-[50px] rounded-tr-none relative">
+            <div className="bg-[#f5a586] w-full h-56 rounded-[50px] rounded-tr-none relative">
               <div className="flex items-center justify-center h-full w-full">
                 <div>
-                  <div className=" bg-white w-16 h-16 flex justify-center items-center  rounded-full mx-auto mb-3">
-                    <HandPlatter fill="#829f01" size={40} />
-                  </div>
                   <h2 className="text-white text-2xl text-center">
-                    100% recyclable <br /> packaging
+                    Smooth and creamy
                   </h2>
+                  <img className="size-[120px] m-auto" src="/ing2.png" alt="" />
                 </div>
               </div>
             </div>
@@ -40,33 +34,29 @@ const Ingredient = () => {
         <div className="col-span-6">
           <img
             alt="image"
-            className="mx-auto w-[80%]"
+            className="mx-auto w-[90%] "
             src="/image_hero_04.png"
           />
         </div>
         <div className="col-span-3">
           <div className="flex flex-col gap-5">
-            <div className="bg-[#fc7116] w-full h-60 rounded-[50px] rounded-bl-none relative">
+            <div className="bg-[#fa9660] w-full h-56 rounded-[50px] rounded-bl-none relative">
               <div className="flex items-center justify-center h-full w-full">
                 <div>
-                  <div className=" bg-white w-16 h-16 flex justify-center items-center  rounded-full mx-auto mb-3">
-                    <Apple fill="#829f01" size={40} />
-                  </div>
                   <h2 className="text-white text-2xl text-center">
-                    100% Organic <br /> Ingredient
+                    Pure and flavorful
                   </h2>
+                  <img className="size-[120px] m-auto" src="/ing3.png" alt="" />
                 </div>
               </div>
             </div>
-            <div className="bg-[#f8b413] w-full h-60 rounded-[50px] rounded-tl-none">
+            <div className="bg-[#fad250] w-full h-56 rounded-[50px] rounded-tl-none">
               <div className="flex items-center justify-center h-full w-full">
                 <div>
-                  <div className=" bg-white w-16 h-16 flex justify-center items-center  rounded-full mx-auto mb-3">
-                    <MapPin fill="#829f01" size={40} />
-                  </div>
                   <h2 className="text-white text-2xl text-center">
-                    Small Local <br /> Producer
+                    Perfectly balanced for growing babies
                   </h2>
+                  <img className="size-[120px] m-auto" src="/ing4.png" alt="" />
                 </div>
               </div>
             </div>

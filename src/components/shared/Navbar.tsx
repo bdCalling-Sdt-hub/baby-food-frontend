@@ -13,7 +13,7 @@ const Navbar = () => {
   const leftLinks = [
     { path: "/about-us", title: "About Us" },
     { path: "/products", title: "Products" },
-    { path: "/ingredient", title: "Ingredient" },
+    { path: "/ingredient", title: "Ingredients" },
   ];
 
   const rightLinks = [
@@ -23,7 +23,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className={`${path !== "/" && "bg-footer "}`}>
+    <div className={`z-[999] ${path !== "/" && "bg-footer "}`}>
       <div className="container flex items-center justify-between py-4">
         {/* Left Links */}
         <div className="hidden md:flex items-center gap-8 uppercase">
@@ -45,7 +45,7 @@ const Navbar = () => {
           <a href="/">
             <img
               alt="Logo"
-              className="w-full h-14 brightness-0 invert"
+              className="navLogo w-[90%] h-14 brightness-0 invert"
               src="/logo.png"
             />
           </a>

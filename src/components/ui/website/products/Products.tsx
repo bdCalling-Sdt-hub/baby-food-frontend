@@ -16,7 +16,7 @@ export default function Products() {
         {" "}
         Our New Arrival <br /> Products
       </Heading>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-10 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 mt-10 ">
         {foods.map((food, index) => (
           <ProductCard key={index} food={food} />
         ))}

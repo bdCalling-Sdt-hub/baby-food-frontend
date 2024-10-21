@@ -27,9 +27,6 @@ const config: Config = {
         "2xl": "1300px",
       },
     },
-    animation: {
-      "custom-ping": "ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite",
-    },
   },
   plugins: [],
 };

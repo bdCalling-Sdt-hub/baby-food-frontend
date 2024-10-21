@@ -26,7 +26,7 @@ const Contact = () => {
         {contactInfo.map((item, index) => (
           <div key={index} className="border p-5 rounded relative">
             <div className="absolute md:-left-10  bg-white shadow w-16 h-16 flex justify-center items-center rounded-full">
-              <span className="animate-custom-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               {item.icon}
             </div>
             <div className="ml-20">
