@@ -11,9 +11,8 @@ export default function Products() {
       .then((data) => setFoods(data.products));
   }, []);
   return (
-    <div className="container">
-      <Heading className="items-center text-center">
-        {" "}
+    <div className="container my-20 md:my-10">
+      <Heading className="items-center text-[#eb9b9b] oswald text-center">
         Our New Arrival <br /> Products
       </Heading>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 mt-10 ">

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/shared/Navbar";
 
 const backgroundVariants = {
-  hidden: { opacity: 0, y: -50, scale: 1 },
+  hidden: { opacity: 0, y: -50, scale: 1.4 },
   visible: {
     opacity: 1,
     y: 0,
@@ -35,7 +35,7 @@ export default function HeroSection() {
       <div className="bg-[#F16763] h-screen">
         <Navbar />
 
-        <div className="container overflow-hidden -mt-10 relative flex flex-col justify-center items-center h-full">
+        <div className="z-[-0] container overflow-hidden -mt-[72px] md:-mt-[88px] relative flex flex-col justify-center items-center h-full">
           {/* Background image with smoother scaling and movement */}
           <motion.img
             src="/hero-inside.png"
@@ -47,7 +47,7 @@ export default function HeroSection() {
 
           {/* Foreground product image with smooth fade-in and slide-up */}
           <motion.img
-            className="absolute w-[60%] md:w-[680px] mx-auto"
+            className="absolute w-[60%] md:w-[690px] mx-auto"
             src="/baby-product.png"
             alt=""
             initial="hidden"

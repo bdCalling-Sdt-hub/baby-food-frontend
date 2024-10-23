@@ -23,8 +23,12 @@ const Navbar = () => {
   ];
 
   return (
-    <div className={`z-[999] ${path !== "/" && "bg-footer "}`}>
-      <div className="container flex items-center justify-between py-4">
+    <div
+      className={`relative z-[999]  ${
+        path !== "/" ? "bg-[#bcd49a]" : "bg-red-500 md:bg-transparent"
+      }`}
+    >
+      <div className="container flex items-center justify-between py-5 md:py-4">
         {/* Left Links */}
         <div className="hidden md:flex items-center gap-8 uppercase">
           {leftLinks.map((link, index) => (
@@ -41,11 +45,11 @@ const Navbar = () => {
         </div>
 
         {/* Logo (Centered) */}
-        <div className="flex justify-center w-[20%]">
+        <div className="flex justify-center  ">
           <a href="/">
             <img
               alt="Logo"
-              className="navLogo w-[90%] h-14 brightness-0 invert"
+              className="navLogo w-[80%] md:w-[80%] h-12 md:h-16 brightness-0 invert"
               src="/logo.png"
             />
           </a>

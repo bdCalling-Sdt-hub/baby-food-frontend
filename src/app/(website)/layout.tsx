@@ -6,7 +6,7 @@ export default function WebsiteLayout({ children }: { children: ReactNode }) {
   return (
     <div>
       <Navbar />
-      <div className="min-h-screen container mt-8">{children}</div>
+      <div className=" container">{children}</div>
       <Footer />
     </div>
   );

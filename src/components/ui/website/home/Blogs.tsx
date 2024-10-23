@@ -5,8 +5,8 @@ export default function Blogs() {
   const blogs = [
     {
       image: "/blog1.png",
-      title: "Locally grown",
-      shortTitle: "Our Veggies are",
+      title: "Locally Sourced",
+      shortTitle: "Our Ingredients are",
     },
     {
       image: "/blog2.png",
@@ -25,7 +25,7 @@ export default function Blogs() {
         <div className="container md:grid grid-cols-12 items-start gap-5">
           <div className="col-span-3 my-5">
             <Heading className="text-center md:text-start">
-              Farm-Fresh Nutrition <br /> in Every <br /> Bitte
+              Farm-Fresh Nutrition <br /> in Every <br /> Bite
             </Heading>
           </div>
           <div className="col-span-9">

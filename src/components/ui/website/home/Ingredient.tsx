@@ -13,7 +13,7 @@ const Ingredient = () => {
           <div className="col-span-3">
             <div className="flex flex-col gap-5">
               <div className="bg-[#aae100] w-full h-56 rounded-[50px] rounded-br-none relative">
-                <div className="flex items-center justify-center h-full w-full">
+                <div className="flex p-2 items-center justify-center h-full w-full">
                   <div>
                     <motion.h2
                       initial={{
@@ -30,7 +30,7 @@ const Ingredient = () => {
                       }}
                       className="text-white text-2xl text-center"
                     >
-                      Rich in essential nutrients
+                      Rich in Essential Nutrients
                     </motion.h2>
                     <img
                       className="size-[120px] m-auto"
@@ -58,7 +58,7 @@ const Ingredient = () => {
                       }}
                       className="text-white text-2xl text-center"
                     >
-                      Smooth and creamy
+                      Smooth and Creamy
                     </motion.h2>
                     <img
                       className="size-[120px] m-auto"
@@ -97,7 +97,7 @@ const Ingredient = () => {
                       }}
                       className="text-white text-2xl text-center"
                     >
-                      Pure and flavorful
+                      Pure and Flavorful
                     </motion.h2>
                     <img
                       className="size-[120px] m-auto"
@@ -125,7 +125,7 @@ const Ingredient = () => {
                       }}
                       className="text-white text-2xl text-center"
                     >
-                      Perfectly balanced for growing babies
+                      Perfectly Balanced For Growing Babies
                     </motion.h2>
                     <img
                       className="size-[120px] m-auto"

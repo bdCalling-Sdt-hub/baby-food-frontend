@@ -13,7 +13,7 @@ const Ingredient = () => {
               <div className="flex items-center justify-center h-full w-full">
                 <div>
                   <h2 className="text-white text-2xl text-center">
-                    Rich in essential nutrients
+                    Rich in Essential Nutrients
                   </h2>
                   <img className="size-[120px] m-auto" src="/ing1.png" alt="" />
                 </div>
@@ -23,7 +23,7 @@ const Ingredient = () => {
               <div className="flex items-center justify-center h-full w-full">
                 <div>
                   <h2 className="text-white text-2xl text-center">
-                    Smooth and creamy
+                    Smooth and Creamy
                   </h2>
                   <img className="size-[120px] m-auto" src="/ing2.png" alt="" />
                 </div>
@@ -44,7 +44,7 @@ const Ingredient = () => {
               <div className="flex items-center justify-center h-full w-full">
                 <div>
                   <h2 className="text-white text-2xl text-center">
-                    Pure and flavorful
+                    Pure and Flavorful
                   </h2>
                   <img className="size-[120px] m-auto" src="/ing3.png" alt="" />
                 </div>
@@ -54,7 +54,7 @@ const Ingredient = () => {
               <div className="flex items-center justify-center h-full w-full">
                 <div>
                   <h2 className="text-white text-2xl text-center">
-                    Perfectly balanced for growing babies
+                    Perfectly Balanced For Growing Babies
                   </h2>
                   <img className="size-[120px] m-auto" src="/ing4.png" alt="" />
                 </div>

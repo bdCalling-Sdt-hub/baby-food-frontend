@@ -123,9 +123,9 @@ const getItems = (panelStyle: any) => [
     ),
     children: (
       <p className="text-lg tracking-wider">
-        No, our cubes are made from only a few simple, organic ingredients. We
-        never use additives, preservatives, or fillers, so you can feel
-        confident that your baby is getting pure, wholesome food.
+        No, our cubes are made from organic ingredients. We never use additives,
+        preservatives, or fillers, so you can feel confident that your baby is
+        getting pure, wholesome food.
       </p>
     ),
     style: panelStyle,
@@ -170,7 +170,7 @@ const FAQ = () => {
     fontSize: "14px",
   };
   return (
-    <div className="container">
+    <div className="container text-[#d1e3b7]">
       <Heading className="items-center text-center">
         Your Questions, <br /> Answered
       </Heading>
