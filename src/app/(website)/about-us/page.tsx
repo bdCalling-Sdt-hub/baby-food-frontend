@@ -1,9 +1,9 @@
 const AboutPage = () => {
   return (
-    <div className="my-6">
+    <div className="container md:my-6 mt-8">
       <div className="grid grid-cols-1 gap-4 min-h-[calc(100vh-96px)] items-center md:grid-cols-2  ">
         <div className="space-y-5">
-          <h2 className="text-4xl md:text-6xl oswald text-center md:text-start">
+          <h2 className="text-2xl md:text-6xl oswald text-start md:text-start">
             About Us
           </h2>
           <p className="">
@@ -26,7 +26,7 @@ const AboutPage = () => {
           </p>
         </div>
         <div>
-          <img src="/men.png" alt="" />
+          <img className="w-full" src="/men.png" alt="" />
         </div>
       </div>
     </div>

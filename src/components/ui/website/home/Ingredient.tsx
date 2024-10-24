@@ -5,7 +5,7 @@ const Ingredient = () => {
     <div className="bg-[#ffeebc] py-10">
       <div className="container mt-10">
         <div className=" text-center mx-auto">
-          <h1 className="text-[#f8b418] text-3xl md:text-6xl text-center">
+          <h1 className="text-[#f8b418] oswald text-3xl md:text-6xl text-center">
             100% Organic Convenient & Nutritious
           </h1>
         </div>
@@ -73,8 +73,8 @@ const Ingredient = () => {
           <div className="col-span-6">
             <img
               alt="image"
-              className="mx-auto w-[90%] "
-              src="/image_hero_04.png"
+              className="mx-auto w-[100%] "
+              src="/baby-product.png"
             />
           </div>
           <div className="col-span-3">

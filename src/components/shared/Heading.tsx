@@ -12,7 +12,7 @@ export default function Heading({
       <div className=" mx-auto md:mx-0">
         <img className="size-24 " alt="image" src="/green_leaf.png" />
       </div>
-      <h2 className="text-3xl md:text-5xl font-extrabold tracking-wider">
+      <h2 className="text-3xl oswald md:text-5xl font-medium tracking-wider">
         {children}
       </h2>
     </div>

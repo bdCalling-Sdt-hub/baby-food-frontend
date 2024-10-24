@@ -14,7 +14,7 @@ export default function Products() {
   return (
     <div className="bg-[#ffe4d8] py-10">
       <div className="container mt-10 ">
-        <h1 className="text-[#eb9b9b] text-3xl md:text-6xl text-center">
+        <h1 className="text-[#eb9b9b] oswald text-3xl md:text-6xl text-center">
           Our Products
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 mt-10 gap-4">

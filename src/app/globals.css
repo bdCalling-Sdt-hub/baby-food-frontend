@@ -6,13 +6,18 @@
 @tailwind components;
 @tailwind utilities;
 
-h1,
+/* h1,
 h2 {
   font-family: "Paytone One", sans-serif;
-}
+} */
 
 button {
   font-family: "Oswald", sans-serif;
+}
+
+h1,
+h2 {
+  font-family: "Paytone One", sans-serif;
 }
 
 .poppins {

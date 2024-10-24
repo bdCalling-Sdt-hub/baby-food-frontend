@@ -47,7 +47,7 @@ export default function ProductInfo() {
           </div>
 
           <motion.h2
-            className="text-3xl md:text-5xl text-[#657c1e] font-extrabold "
+            className="text-3xl md:text-5xl oswald font-medium text-[#657c1e] "
             variants={textVariants}
           >
             Wholesome Goodness for Tiny Tastes
@@ -67,7 +67,7 @@ export default function ProductInfo() {
             className="flex flex-wrap justify-center md:justify-start items-center gap-5"
             variants={textVariants}
           >
-            <Link href="/products">
+            <Link href="/ingredient">
               <Button className="bg-[#ffe4d8] text-[#5e741d]">
                 View Our Products
               </Button>

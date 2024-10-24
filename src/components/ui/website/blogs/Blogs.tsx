@@ -4,8 +4,8 @@ import Heading from "@/components/shared/Heading";
 export default function Blogs() {
   const blogs = [
     {
-      image: "/card_image_01.jpg",
-      title: "Locally grown",
+      image: "/blog1.png",
+      title: "Locally Sourced",
       shortTitle: "Our Veggies are",
     },
     {
@@ -19,19 +19,9 @@ export default function Blogs() {
       shortTitle: "100% Organic",
     },
     {
-      image: "/card_image_01.jpg",
-      title: "Locally grown",
+      image: "/blog1.png",
+      title: "Locally Sourced",
       shortTitle: "Our Veggies are",
-    },
-    {
-      image: "/card_image_02.jpg",
-      title: "Fresh Meals",
-      shortTitle: "Check our",
-    },
-    {
-      image: "/card_image_03.jpg",
-      title: "Veggies & Fruits",
-      shortTitle: "100% Organic",
     },
     {
       image: "/card_image_02.jpg",
@@ -45,7 +35,7 @@ export default function Blogs() {
     },
   ];
   return (
-    <div className="md:mt-28">
+    <div className="md:my-20 my-2">
       <div className="container grid grid-cols-12 gap-5">
         <div className="col-span-12 md:col-span-3">
           <Heading className="text-center md:text-start">

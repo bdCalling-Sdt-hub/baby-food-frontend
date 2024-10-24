@@ -27,7 +27,7 @@ const MobileDrawer = ({
       }}
     >
       <Drawer
-        style={{ backgroundColor: "#6c8738" }}
+        style={{ backgroundColor: "#bcd49a" }}
         placement="right"
         closeIcon={<CloseOutlined />}
         onClose={onClose}

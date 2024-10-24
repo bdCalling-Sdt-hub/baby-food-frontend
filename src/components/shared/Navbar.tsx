@@ -49,7 +49,7 @@ const Navbar = () => {
           <a href="/">
             <img
               alt="Logo"
-              className="navLogo w-[80%] md:w-[80%] h-12 md:h-16 brightness-0 invert"
+              className=" w-[80px] md:w-[80%] h-12 md:h-16 brightness-0 invert"
               src="/logo.png"
             />
           </a>

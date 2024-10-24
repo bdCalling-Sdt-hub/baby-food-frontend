@@ -29,15 +29,6 @@ const ProductCard = ({ food }: { food: any }) => {
 
   return (
     <div className="text-center relative w-full h-full md:p-5 rounded-2xl flex flex-col">
-      <motion.h2
-        initial={initial}
-        whileInView={animate}
-        className="text-lg h-full md:text-xl poppins font-medium tracking-wide text-[#eb9b9b] my-2"
-      >
-        {food.title.split(",")[0]}
-        <br />
-        {food.title.split(",").slice(1).join(",").trim()}
-      </motion.h2>
       <motion.img
         initial={{ opacity: 0, y: 20, scale: 0.98 }}
         whileInView={{
@@ -47,9 +38,18 @@ const ProductCard = ({ food }: { food: any }) => {
           transition: { duration: 1, ease: "easeInOut" },
         }}
         alt="product"
-        className="mx-auto h-[300px] "
+        className="mx-auto h-[250px] "
         src={food.image}
       />
+      <motion.h2
+        initial={initial}
+        whileInView={animate}
+        className="text-lg h-full md:text-xl poppins font-medium tracking-wide text-[#eb9b9b] my-2"
+      >
+        {food.title.split(",")[0]}
+        <br />
+        {food.title.split(",").slice(1).join(",").trim()}
+      </motion.h2>
 
       <motion.div onClick={() => setShowDetails(true)}>
         <Button className="bg-[#eb9b9b] px-8">Learn More</Button>

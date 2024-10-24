@@ -1,8 +1,8 @@
 const SustainabilityPage = () => {
   return (
-    <div className="my-6 min-h-[calc(100vh-96px)] grid grid-cols-1 items-center">
+    <div className="container my-6 min-h-[calc(100vh-96px)] grid grid-cols-1 items-center">
       <div className="tracking-wide space-y-5 ">
-        <h2 className="text-4xl md:text-6xl oswald text-center md:text-start">
+        <h2 className="text-2xl md:text-6xl oswald text-start md:text-start">
           Sustainability at Cove Valley
         </h2>
         <p className="">
