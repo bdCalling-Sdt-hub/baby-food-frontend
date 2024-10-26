@@ -89,7 +89,7 @@ const getItems = (panelStyle: any) => [
     ),
     children: (
       <p className="text-lg tracking-wider">
-        Our baby food cubes can be stored in the freezer for up to 3 months. To
+        Our baby food cubes can be stored in the freezer for up to 12 months. To
         ensure the best taste and quality, we recommend using them within this
         timeframe.
       </p>

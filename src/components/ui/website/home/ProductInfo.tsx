@@ -67,7 +67,7 @@ export default function ProductInfo() {
             className="flex flex-wrap justify-center md:justify-start items-center gap-5"
             variants={textVariants}
           >
-            <Link href="/ingredient">
+            <Link href="/products">
               <Button className="bg-[#ffe4d8] text-[#5e741d]">
                 View Our Products
               </Button>

@@ -1,9 +1,9 @@
 const AboutPage = () => {
   return (
     <div className="container md:my-6 mt-8">
-      <div className="grid grid-cols-1 gap-4 min-h-[calc(100vh-96px)] items-center md:grid-cols-2  ">
-        <div className="space-y-5">
-          <h2 className="text-2xl md:text-6xl oswald text-start md:text-start">
+      <div className="grid grid-cols-1 gap-4 min-h-[calc(100vh-96px)] md:items-center ">
+        <div className="space-y-5 md:w-[80%] mx-auto md:text-center">
+          <h2 className="text-2xl md:text-6xl oswald md:text-center md:mb-[50px] mb-[20px]">
             About Us
           </h2>
           <p className="">
@@ -25,9 +25,9 @@ const AboutPage = () => {
             them time and effort in meal prep.
           </p>
         </div>
-        <div>
+        {/* <div>
           <img className="w-full" src="/men.png" alt="" />
-        </div>
+        </div> */}
       </div>
     </div>
   );
