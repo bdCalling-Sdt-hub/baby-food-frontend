@@ -32,26 +32,13 @@ const Sidebar = () => {
       path: "/products-details",
       icon: <LayoutGrid />,
     },
-    {
-      title: "Ingredient",
-      path: "/ingredient-details",
-      icon: <ShoppingBasket />,
-    },
-    {
-      title: "Sustainability & Packaging",
-      path: "/sustainability-packaging-details",
-      icon: <Package />,
-    },
+
     {
       title: "Contact",
       path: "/contact-details",
       icon: <Contact />,
     },
-    {
-      title: "About Us",
-      path: "/about-details",
-      icon: <Captions />,
-    },
+
     {
       title: "FAQ",
       path: "/faq-details",
@@ -92,7 +79,7 @@ const Sidebar = () => {
   return (
     <div>
       <div
-        className="lg:h-[110vh] lg:fixed lg:bg-[#6c8738]"
+        className="lg:h-[110vh] w-[300px] lg:fixed bg-[#bcd49a]"
         style={{
           overflow: "auto",
           overflowY: "hidden",
@@ -152,7 +139,7 @@ const Sidebar = () => {
                       display: "flex",
                       width: "100%",
                       backgroundColor:
-                        item.path === pathname ? "#F37D2B" : "transparent",
+                        item.path === pathname ? "#89a809" : "transparent",
                       color: item.path === pathname ? "#fff" : "#fff",
                       alignItems: "center",
                       gap: "14px",

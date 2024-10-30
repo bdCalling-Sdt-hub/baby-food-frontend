@@ -14,7 +14,7 @@ const BlogCard = ({ blog }: { blog: any }) => {
         <div>
           <p className="uppercase tex">{blog.shortTitle}</p>
           <h2 className="text-2xl">{blog.title}</h2>
-          <Link href="#">
+          <Link href={`/blogs/${1}`}>
             <MoveRight color="#fff" />
           </Link>
         </div>

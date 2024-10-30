@@ -1,173 +1,151 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Form, Input, Modal } from "antd";
-import { Images } from "lucide-react";
-import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import TextInput from "../shared/TextInput";
+import { Form, Input, Modal } from 'antd';
+import { Images } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
+import TextInput from '../shared/TextInput';
 
-interface propsType {
-  setOpen: any;
-  open: boolean;
-  modalData: any;
-  setModalData: any;
+interface PropsType {
+      setOpen: (value: boolean) => void;
+      open: boolean;
+      modalData: any;
+      setModalData: (data: any) => void;
 }
 
-const AddProductModal = ({
-  setOpen,
-  open,
-  modalData,
-  setModalData,
-}: propsType) => {
-  const [form] = Form.useForm();
-  const [imgFile, setImgFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState<any>();
+const AddProductModal = ({ setOpen, open, modalData, setModalData }: PropsType) => {
+      const [form] = Form.useForm();
+      const [imgFile, setImgFile] = useState<File | null>(null);
+      const [imageUrl, setImageUrl] = useState<string | null>(null);
+      const [ingredientImgFile, setIngredientImgFile] = useState<File | null>(null);
+      const [ingredientImageUrl, setIngredientImageUrl] = useState<string | null>(null);
 
-  const handleChange = (e: any) => {
-    const file = e.target.files[0];
-    setImgFile(file);
-    setImageUrl(URL.createObjectURL(file));
-  };
+      useEffect(() => {
+            if (modalData) {
+                  form.setFieldsValue({
+                        name: modalData.name,
+                        category: modalData.category,
+                        price: modalData.price,
+                        description: modalData.description,
+                  });
+                  setImageUrl(modalData.image);
+                  setIngredientImageUrl(modalData.ingredientImage);
+            }
+      }, [modalData, form]);
 
-  useEffect(() => {
-    if (modalData) {
-      form.setFieldsValue({
-        name: modalData?.name,
-        category: modalData?.category,
-        price: modalData?.price,
-        description: modalData?.description,
-      });
-      setImageUrl(modalData?.image);
-    }
-  }, [modalData, form]);
+      const handleChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'product' | 'ingredient') => {
+            const file = e.target.files?.[0];
+            if (file) {
+                  if (type === 'product') {
+                        setImgFile(file);
+                        setImageUrl(URL.createObjectURL(file));
+                  } else {
+                        setIngredientImgFile(file);
+                        setIngredientImageUrl(URL.createObjectURL(file));
+                  }
+            }
+      };
 
-  const onFinish = async (values: any) => {
-    const formdata = new FormData();
+      const onFinish = async (values: any) => {
+            const formData = new FormData();
+            const { productImage, ingredientImage, ...otherValues } = values;
 
-    const { imagess, ...otherValues } = values;
+            if (imgFile) formData.append('productImage', imgFile);
+            if (ingredientImgFile) formData.append('ingredientImage', ingredientImgFile);
+            Object.entries(otherValues).forEach(([field, value]) => formData.append(field, value as any));
 
-    if (imgFile) {
-      formdata.append("image", imgFile);
-    }
+            Swal.fire({
+                  text: modalData?.id ? 'Product Updated Successfully' : 'Product Added Successfully',
+                  icon: 'success',
+                  showConfirmButton: false,
+                  timer: 1500,
+            });
 
-    Object.entries(otherValues).forEach(([field, value]: any) => {
-      formdata.append(field, value);
-    });
+            setImageUrl(null);
+            setIngredientImageUrl(null);
+            form.resetFields();
+            setOpen(false);
+            setModalData(null);
+      };
 
-    const id = modalData?.id;
+      const closeModal = () => {
+            setOpen(false);
+            setImageUrl(null);
+            setIngredientImageUrl(null);
+            setModalData(null);
+            form.resetFields();
+      };
 
-    if (modalData?.id) {
-      Swal.fire({
-        text: "Product Update Successfully",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      setImageUrl(null);
-      form.resetFields();
-      setOpen(false);
-      setModalData(null);
-    } else {
-      Swal.fire({
-        text: "Product Added Successfully",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      setImageUrl(null);
-      form.resetFields();
-      setOpen(false);
-      setModalData(null);
-    }
-  };
-
-  return (
-    <div>
-      <Modal
-        open={open}
-        onCancel={() => {
-          setOpen(false);
-          setImageUrl(null);
-          setModalData(null);
-          form.resetFields();
-        }}
-        centered
-        footer={false}
-        width={600}
-      >
-        <div className=" p-5 py-0">
-          <p className=" pb-3 text-lg font-[500]">
-            {" "}
-            {modalData ? "Update Product" : "Add Product"}
-          </p>
-          <Form onFinish={onFinish} form={form} layout="vertical">
-            <TextInput name="name" label="Product Name" />
-
-            <div className=" py-[4px]">
-              <p className="text-[#6D6D6D] py-1">Product Image</p>
-
-              <label
-                htmlFor="image"
-                style={{ display: "block" }}
-                className="p-1 border rounded-lg"
-              >
-                <Form.Item name="imagess">
-                  <div className="flex justify-center items-center w-full h-[100px] ">
-                    {imageUrl ? (
-                      <img
-                        src={imageUrl}
-                        style={{
-                          height: "100%",
-                          width: "100%",
-                          borderRadius: "10px",
-                          objectFit: "contain",
-                        }}
-                        alt=""
-                      />
-                    ) : (
-                      <Images className="text-8xl flex items-center justify-center text-[#666666] font-[400]" />
-                    )}
+      return (
+            <Modal open={open} onCancel={closeModal} centered footer={null} width={600}>
+                  <div className="p-5 py-0">
+                        <p className="pb-3 text-lg font-semibold">{modalData ? 'Update Product' : 'Add Product'}</p>
+                        <Form form={form} layout="vertical" onFinish={onFinish}>
+                              <TextInput name="name" label="Product Name" />
+                              <div className="py-2 flex gap-3 items-center">
+                                    <Form.Item
+                                          name="productImage"
+                                          label={<p className="text-gray-500">Product Image</p>}
+                                    >
+                                          <div className="flex justify-center items-center w-full h-[100px]">
+                                                {imageUrl ? (
+                                                      <img
+                                                            src={imageUrl}
+                                                            alt="Product"
+                                                            className="h-full w-full rounded-lg object-contain"
+                                                      />
+                                                ) : (
+                                                      <Images className="text-8xl text-gray-500" />
+                                                )}
+                                          </div>
+                                          <Input
+                                                id="product-image"
+                                                type="file"
+                                                hidden
+                                                onChange={(e) => handleChange(e, 'product')}
+                                          />
+                                    </Form.Item>
+                                    <Form.Item
+                                          name="ingredientImage"
+                                          label={<p className="text-gray-500">Ingredient Image</p>}
+                                    >
+                                          <div className="flex justify-center items-center w-full h-[100px]">
+                                                {ingredientImageUrl ? (
+                                                      <img
+                                                            src={ingredientImageUrl}
+                                                            alt="Ingredient"
+                                                            className="h-full w-full rounded-lg object-contain"
+                                                      />
+                                                ) : (
+                                                      <Images className="text-8xl text-gray-500" />
+                                                )}
+                                          </div>
+                                          <Input
+                                                id="ingredient-image"
+                                                type="file"
+                                                hidden
+                                                onChange={(e) => handleChange(e, 'ingredient')}
+                                          />
+                                    </Form.Item>
+                              </div>
+                              <TextInput name="category" label="Product Category" />
+                              <TextInput name="price" label="Price" />
+                              <Form.Item
+                                    name="description"
+                                    label="Description"
+                                    rules={[{ required: true, message: 'This field is required' }]}
+                              >
+                                    <Input.TextArea className="resize-none h-20 border" />
+                              </Form.Item>
+                              <Form.Item className="text-center mt-6">
+                                    <button type="submit" className="bg-primary w-full text-white rounded-md h-[45px]">
+                                          Confirm
+                                    </button>
+                              </Form.Item>
+                        </Form>
                   </div>
-
-                  <div className="hidden">
-                    <Input id="image" type="file" onInput={handleChange} />
-                  </div>
-                </Form.Item>
-              </label>
-            </div>
-
-            <TextInput name="category" label="Product Category" />
-            <TextInput name="price" label="Price" />
-
-            <div>
-              <p className="text-[#6D6D6D] py-1">Description</p>
-              <Form.Item
-                name="description"
-                rules={[
-                  {
-                    required: true,
-                    message: "This field is required",
-                  },
-                ]}
-              >
-                <Input.TextArea className="w-[100%] border outline-none h-[80px] resize-none" />
-              </Form.Item>
-            </div>
-
-            <Form.Item className="text-center mt-6">
-              <button
-                type="submit"
-                className="bg-primary  w-full text-[#FEFEFE] rounded-md h-[43px]"
-                style={{ height: "45px" }}
-              >
-                Confirm
-              </button>
-            </Form.Item>
-          </Form>
-        </div>
-      </Modal>
-    </div>
-  );
+            </Modal>
+      );
 };
 
 export default AddProductModal;
