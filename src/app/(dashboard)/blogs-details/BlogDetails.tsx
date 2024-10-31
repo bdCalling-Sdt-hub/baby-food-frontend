@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import AddBlogModal from '@/components/Modals/AddBlogModal';
-import BlogDetailsModal from '@/components/Modals/BlogDetailsModal';
 import DashboardTitle from '@/components/shared/DashboardTitle';
 import { Table } from 'antd';
 import { Eye, Pencil, Trash2 } from 'lucide-react';
@@ -11,8 +8,6 @@ import Swal from 'sweetalert2';
 
 const BlogDetails = () => {
       const [open, setOpen] = useState(false);
-      const [showDetails, setShowDetails] = useState(false);
-      const [modalData, setModalData] = useState(null);
 
       const data = [
             {
@@ -121,9 +116,9 @@ const BlogDetails = () => {
                   key: 'title',
             },
             {
-                  title: ' Subtitle',
-                  dataIndex: 'subTitle',
-                  key: 'subTitle',
+                  title: 'Content',
+                  dataIndex: 'content',
+                  key: 'content',
             },
             {
                   title: 'Action',
@@ -133,16 +128,7 @@ const BlogDetails = () => {
                         <div className=" flex items-center gap-4 ">
                               <button
                                     onClick={() => {
-                                          setShowDetails(true);
-                                          setModalData(record);
-                                    }}
-                              >
-                                    <Eye />
-                              </button>
-                              <button
-                                    onClick={() => {
                                           setOpen(true);
-                                          setModalData(record);
                                     }}
                               >
                                     <Pencil />
@@ -181,13 +167,7 @@ const BlogDetails = () => {
                         }}
                   />
 
-                  <AddBlogModal open={open} setOpen={setOpen} modalData={modalData} setModalData={setModalData} />
-                  <BlogDetailsModal
-                        showDetails={showDetails}
-                        setShowDetails={setShowDetails}
-                        modalData={modalData}
-                        setModalData={setModalData}
-                  />
+                  <AddBlogModal open={open} setOpen={setOpen} />
             </div>
       );
 };

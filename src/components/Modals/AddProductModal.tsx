@@ -1,151 +1,161 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Form, Input, Modal } from 'antd';
-import { Images } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Form, Input, Upload, Button, Modal } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2';
-import TextInput from '../shared/TextInput';
 
-interface PropsType {
-      setOpen: (value: boolean) => void;
+interface AddProductFormProps {
       open: boolean;
-      modalData: any;
-      setModalData: (data: any) => void;
+      setOpen: (open: boolean) => void;
 }
 
-const AddProductModal = ({ setOpen, open, modalData, setModalData }: PropsType) => {
-      const [form] = Form.useForm();
-      const [imgFile, setImgFile] = useState<File | null>(null);
-      const [imageUrl, setImageUrl] = useState<string | null>(null);
-      const [ingredientImgFile, setIngredientImgFile] = useState<File | null>(null);
-      const [ingredientImageUrl, setIngredientImageUrl] = useState<string | null>(null);
+interface FormValues {
+      name: string;
+      description: string;
+      image?: File;
+      ingredientImage?: File;
+}
 
-      useEffect(() => {
-            if (modalData) {
-                  form.setFieldsValue({
-                        name: modalData.name,
-                        category: modalData.category,
-                        price: modalData.price,
-                        description: modalData.description,
-                  });
-                  setImageUrl(modalData.image);
-                  setIngredientImageUrl(modalData.ingredientImage);
-            }
-      }, [modalData, form]);
+const AddProductForm: React.FC<AddProductFormProps> = ({ setOpen, open }) => {
+      const [form] = Form.useForm<FormValues>(); // Correctly type the form instance
+      const [imageFile, setImageFile] = useState<File | null>(null);
+      const [ingredientImageFile, setIngredientImageFile] = useState<File | null>(null);
 
-      const handleChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'product' | 'ingredient') => {
-            const file = e.target.files?.[0];
-            if (file) {
-                  if (type === 'product') {
-                        setImgFile(file);
-                        setImageUrl(URL.createObjectURL(file));
-                  } else {
-                        setIngredientImgFile(file);
-                        setIngredientImageUrl(URL.createObjectURL(file));
-                  }
+      const handleImageUpload = (file: File, type: 'product' | 'ingredient') => {
+            if (type === 'product') {
+                  setImageFile(file);
+            } else if (type === 'ingredient') {
+                  setIngredientImageFile(file);
             }
+            return false; // Prevent automatic upload
       };
 
-      const onFinish = async (values: any) => {
+      const onFinish = async (values: FormValues) => {
             const formData = new FormData();
-            const { productImage, ingredientImage, ...otherValues } = values;
+            formData.append('name', values.name);
+            formData.append('description', values.description);
 
-            if (imgFile) formData.append('productImage', imgFile);
-            if (ingredientImgFile) formData.append('ingredientImage', ingredientImgFile);
-            Object.entries(otherValues).forEach(([field, value]) => formData.append(field, value as any));
+            if (imageFile) formData.append('image', imageFile);
+            if (ingredientImageFile) formData.append('ingredientImage', ingredientImageFile);
 
+            // Simulate a successful submission
             Swal.fire({
-                  text: modalData?.id ? 'Product Updated Successfully' : 'Product Added Successfully',
+                  text: 'Product Added Successfully',
                   icon: 'success',
                   showConfirmButton: false,
                   timer: 1500,
             });
 
-            setImageUrl(null);
-            setIngredientImageUrl(null);
+            // Clear the form and close modal
             form.resetFields();
+            setImageFile(null);
+            setIngredientImageFile(null);
             setOpen(false);
-            setModalData(null);
       };
 
       const closeModal = () => {
             setOpen(false);
-            setImageUrl(null);
-            setIngredientImageUrl(null);
-            setModalData(null);
             form.resetFields();
+            setImageFile(null);
+            setIngredientImageFile(null);
       };
 
       return (
-            <Modal open={open} onCancel={closeModal} centered footer={null} width={600}>
-                  <div className="p-5 py-0">
-                        <p className="pb-3 text-lg font-semibold">{modalData ? 'Update Product' : 'Add Product'}</p>
-                        <Form form={form} layout="vertical" onFinish={onFinish}>
-                              <TextInput name="name" label="Product Name" />
-                              <div className="py-2 flex gap-3 items-center">
-                                    <Form.Item
-                                          rules={[{ required: true, message: 'This field is required' }]}
-                                          name="productImage"
-                                          label={<p className="text-gray-500">Product Image</p>}
+            <Modal title="Add Product" visible={open} onCancel={closeModal} footer={null} centered>
+                  <Form form={form} layout="vertical" onFinish={onFinish}>
+                        <Form.Item
+                              name="name"
+                              label={<label className="font-medium text-gray-700">Product Name</label>}
+                              rules={[{ required: true, message: 'Please enter the product name' }]}
+                        >
+                              <Input
+                                    style={{
+                                          height: 42,
+                                    }}
+                                    placeholder="Organic Baby Food"
+                                    className="border-gray-300 rounded-lg w-full"
+                              />
+                        </Form.Item>
+
+                        <Form.Item
+                              name="description"
+                              label={<label className="font-medium text-gray-700">Description</label>}
+                              rules={[{ required: true, message: 'Please enter the product description' }]}
+                        >
+                              <Input.TextArea
+                                    placeholder="A gentle, organic baby food."
+                                    className="border-gray-300 rounded-lg w-full"
+                              />
+                        </Form.Item>
+
+                        <div className="flex items-center gap-10 justify-center">
+                              <Form.Item
+                                    name="image"
+                                    label={<label className="font-medium text-gray-700">Product Image</label>}
+                                    rules={[{ required: true, message: 'Please upload the product image' }]}
+                              >
+                                    <Upload
+                                          listType="picture-card"
+                                          beforeUpload={(file) => handleImageUpload(file, 'product')}
+                                          showUploadList={false}
+                                          className="w-full"
                                     >
-                                          <div className="flex justify-center items-center w-full h-[100px]">
-                                                {imageUrl ? (
-                                                      <img
-                                                            src={imageUrl}
-                                                            alt="Product"
-                                                            className="h-full w-full rounded-lg object-contain"
-                                                      />
-                                                ) : (
-                                                      <Images className="text-8xl text-gray-500" />
-                                                )}
-                                          </div>
-                                          <Input
-                                                id="product-image"
-                                                type="file"
-                                                hidden
-                                                onChange={(e) => handleChange(e, 'product')}
-                                          />
-                                    </Form.Item>
-                                    <Form.Item
-                                          name="ingredientImage"
-                                          label={<p className="text-gray-500">Ingredient Image</p>}
-                                    >
-                                          <div className="flex justify-center items-center w-full h-[100px]">
-                                                {ingredientImageUrl ? (
-                                                      <img
-                                                            src={ingredientImageUrl}
-                                                            alt="Ingredient"
-                                                            className="h-full w-full rounded-lg object-contain"
-                                                      />
-                                                ) : (
-                                                      <Images className="text-8xl text-gray-500" />
-                                                )}
-                                          </div>
-                                          <Input
-                                                id="ingredient-image"
-                                                type="file"
-                                                hidden
-                                                onChange={(e) => handleChange(e, 'ingredient')}
-                                          />
-                                    </Form.Item>
-                              </div>
+                                          {imageFile ? (
+                                                <img
+                                                      src={URL.createObjectURL(imageFile)}
+                                                      alt="Product"
+                                                      className="w-full h-full object-cover rounded-lg"
+                                                />
+                                          ) : (
+                                                <div className="flex flex-col items-center justify-center text-gray-500 text-sm">
+                                                      <PlusOutlined className="text-2xl mb-2" />
+                                                      <span>Upload</span>
+                                                </div>
+                                          )}
+                                    </Upload>
+                              </Form.Item>
 
                               <Form.Item
-                                    name="description"
-                                    label="Description"
-                                    rules={[{ required: true, message: 'This field is required' }]}
+                                    name="ingredientImage"
+                                    label={<label className="font-medium text-gray-700">Ingredient Image</label>}
+                                    rules={[{ required: true, message: 'Please upload the ingredient image' }]}
                               >
-                                    <Input.TextArea className="resize-none h-20 border" />
+                                    <Upload
+                                          listType="picture-card"
+                                          beforeUpload={(file) => handleImageUpload(file, 'ingredient')}
+                                          showUploadList={false}
+                                          className="w-full"
+                                    >
+                                          {ingredientImageFile ? (
+                                                <img
+                                                      src={URL.createObjectURL(ingredientImageFile)}
+                                                      alt="Ingredient"
+                                                      className="w-full h-full object-cover rounded-lg"
+                                                />
+                                          ) : (
+                                                <div className="flex flex-col items-center justify-center text-gray-500 text-sm">
+                                                      <PlusOutlined className="text-2xl mb-2" />
+                                                      <span>Upload</span>
+                                                </div>
+                                          )}
+                                    </Upload>
                               </Form.Item>
-                              <Form.Item className="text-center mt-6">
-                                    <button type="submit" className="bg-primary w-full text-white rounded-md h-[45px]">
-                                          Confirm
-                                    </button>
-                              </Form.Item>
-                        </Form>
-                  </div>
+                        </div>
+
+                        <Form.Item>
+                              <Button
+                                    style={{
+                                          height: 42,
+                                          width: '100%',
+                                    }}
+                                    type="primary"
+                                    htmlType="submit"
+                              >
+                                    Add Product
+                              </Button>
+                        </Form.Item>
+                  </Form>
             </Modal>
       );
 };
 
-export default AddProductModal;
+export default AddProductForm;
