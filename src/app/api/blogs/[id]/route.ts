@@ -11,10 +11,10 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
             const blog = await Blog.findById(params.id);
 
             if (!blog) {
-                  return apiResponse(StatusCodes.NOT_FOUND, 'blog not found');
+                  return apiResponse(false, StatusCodes.NOT_FOUND, 'blog not found');
             }
 
-            return apiResponse(StatusCodes.OK, 'blog retrieved successfully', blog);
+            return apiResponse(true, StatusCodes.OK, 'blog retrieved successfully', blog);
       } catch (error) {
             return handleError(error);
       }
@@ -27,10 +27,10 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
             const blog = await Blog.findByIdAndUpdate(params.id, data, { new: true });
 
             if (!blog) {
-                  return apiResponse(StatusCodes.NOT_FOUND, 'blog not found');
+                  return apiResponse(false, StatusCodes.NOT_FOUND, 'blog not found');
             }
 
-            return apiResponse(StatusCodes.OK, 'blog updated successfully', blog);
+            return apiResponse(true, StatusCodes.OK, 'blog updated successfully', blog);
       } catch (error) {
             return handleError(error);
       }
@@ -43,10 +43,10 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
             const blog = await Blog.findByIdAndDelete(params.id);
 
             if (!blog) {
-                  return apiResponse(StatusCodes.NOT_FOUND, 'blog not found');
+                  return apiResponse(false, StatusCodes.NOT_FOUND, 'blog not found');
             }
 
-            return apiResponse(StatusCodes.OK, 'blog deleted successfully');
+            return apiResponse(true, StatusCodes.OK, 'blog deleted successfully');
       } catch (error) {
             return handleError(error);
       }

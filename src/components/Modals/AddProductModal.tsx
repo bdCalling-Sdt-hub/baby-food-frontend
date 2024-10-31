@@ -60,7 +60,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ setOpen, open }) => {
       };
 
       return (
-            <Modal title="Add Product" visible={open} onCancel={closeModal} footer={null} centered>
+            <Modal title="Add Product" open={open} onCancel={closeModal} footer={null} centered>
                   <Form form={form} layout="vertical" onFinish={onFinish}>
                         <Form.Item
                               name="name"

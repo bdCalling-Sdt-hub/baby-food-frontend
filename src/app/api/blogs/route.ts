@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
             await connectMongoDB();
             const res = await Blog.create(data);
 
-            return apiResponse(StatusCodes.CREATED, 'Blog created successfully', res);
+            return apiResponse(true, StatusCodes.CREATED, 'Blog created successfully', res);
       } catch (error) {
             return handleError(error);
       }
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
             await connectMongoDB();
             const res = await Blog.find();
 
-            return apiResponse(StatusCodes.OK, 'Blogs retrieved successfully', res);
+            return apiResponse(true, StatusCodes.OK, 'Blogs retrieved successfully', res);
       } catch (error) {
             return handleError(error);
       }

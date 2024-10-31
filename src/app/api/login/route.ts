@@ -16,13 +16,15 @@ export async function POST(request: NextRequest, response: NextResponse) {
       try {
             const { email, password } = await request.json();
             const admin = await Admin.findOne({ email });
-            if (!admin) throw new Error('Invalid email');
+            console.log(admin, 'from login route');
+
+            if (!admin) return apiResponse(false, StatusCodes.FORBIDDEN, 'Invalid email');
 
             const isPasswordValid = await bcrypt.compare(password, admin.password);
-            if (!isPasswordValid) throw new Error('Invalid password');
+            if (!isPasswordValid) return apiResponse(false, StatusCodes.FORBIDDEN, 'Invalid password');
 
             const token = createToken(admin._id, admin.name);
-            return apiResponse(StatusCodes.OK, 'Login in successful', token);
+            return apiResponse(true, StatusCodes.OK, 'Login in successful', token);
       } catch (error) {
             return handleError(error);
       }

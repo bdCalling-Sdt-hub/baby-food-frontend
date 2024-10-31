@@ -1,8 +1,15 @@
+'use client';
 import DashboardNavbar from '@/components/shared/DashboardNavbar';
 import Sidebar from '@/components/shared/Sidebar';
 import { ConfigProvider } from 'antd';
+import { useRouter } from 'next/navigation';
 import React from 'react';
-const layout = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+      const router = useRouter();
+      const isAuthenticated = localStorage.getItem('accessToken');
+      if (!isAuthenticated) {
+            return router.push('/');
+      }
       return (
             <ConfigProvider
                   theme={{
@@ -29,4 +36,4 @@ const layout = ({ children }: { children: React.ReactNode }) => {
       );
 };
 
-export default layout;
+export default DashboardLayout;

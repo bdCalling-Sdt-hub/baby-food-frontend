@@ -12,10 +12,10 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
             const faq = await Faq.findByIdAndUpdate(params.id, data, { new: true });
 
             if (!faq) {
-                  return apiResponse(StatusCodes.NOT_FOUND, 'FAQ not found');
+                  return apiResponse(false, StatusCodes.NOT_FOUND, 'FAQ not found');
             }
 
-            return apiResponse(StatusCodes.OK, 'FAQ updated successfully', faq);
+            return apiResponse(true, StatusCodes.OK, 'FAQ updated successfully', faq);
       } catch (error) {
             return handleError(error);
       }
@@ -28,10 +28,10 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
             const faq = await Faq.findByIdAndDelete(params.id);
 
             if (!faq) {
-                  return apiResponse(StatusCodes.NOT_FOUND, 'FAQ not found');
+                  return apiResponse(false, StatusCodes.NOT_FOUND, 'FAQ not found');
             }
 
-            return apiResponse(StatusCodes.OK, 'FAQ deleted successfully');
+            return apiResponse(true, StatusCodes.OK, 'FAQ deleted successfully');
       } catch (error) {
             return handleError(error);
       }
