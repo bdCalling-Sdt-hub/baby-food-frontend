@@ -84,6 +84,7 @@ const AddProductModal = ({ setOpen, open, modalData, setModalData }: PropsType) 
                               <TextInput name="name" label="Product Name" />
                               <div className="py-2 flex gap-3 items-center">
                                     <Form.Item
+                                          rules={[{ required: true, message: 'This field is required' }]}
                                           name="productImage"
                                           label={<p className="text-gray-500">Product Image</p>}
                                     >
@@ -128,8 +129,7 @@ const AddProductModal = ({ setOpen, open, modalData, setModalData }: PropsType) 
                                           />
                                     </Form.Item>
                               </div>
-                              <TextInput name="category" label="Product Category" />
-                              <TextInput name="price" label="Price" />
+
                               <Form.Item
                                     name="description"
                                     label="Description"
