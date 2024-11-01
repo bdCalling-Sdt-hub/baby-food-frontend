@@ -6,6 +6,8 @@ import { usePathname } from 'next/navigation';
 import { MenuProps } from 'antd';
 import { Contact, FileQuestion, LayoutGrid, LayoutList, LogOut } from 'lucide-react';
 import Image from 'next/image';
+import Swal from 'sweetalert2';
+import { removeAccessToken } from '@/utils/setAccessToken';
 
 const Sidebar = () => {
       const pathname = usePathname();
@@ -58,6 +60,25 @@ const Sidebar = () => {
             };
       });
 
+      const handleLogout = () => {
+            Swal.fire({
+                  title: 'Are you sure?',
+
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, Logout!',
+            }).then((result) => {
+                  if (result.isConfirmed) {
+                        removeAccessToken();
+                        Swal.fire({
+                              text: 'Your logout is successful.',
+                              icon: 'success',
+                        });
+                  }
+            });
+      };
       return (
             <div>
                   <div
@@ -147,10 +168,7 @@ const Sidebar = () => {
                                     })}
                                     <li>
                                           <button
-                                                onClick={() => {
-                                                      localStorage.removeItem('accessToken');
-                                                      window.location.href = '/login';
-                                                }}
+                                                onClick={handleLogout}
                                                 style={{
                                                       width: '100%',
                                                       height: '34px',

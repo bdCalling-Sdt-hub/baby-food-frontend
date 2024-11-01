@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
       try {
             await connectMongoDB();
-            const res = await Faq.find();
+            const res = await Faq.find().sort('-createdAt');
 
             return apiResponse(true, StatusCodes.OK, 'FAQs retrieved successfully', res);
       } catch (error) {

@@ -104,7 +104,9 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ open, setOpen }) => {
                         <div className="flex items-center gap-10 justify-center">
                               <Form.Item
                                     name="image"
-                                    label={<label className="font-medium text-gray-700">Product Image</label>}
+                                    label={
+                                          <label className="font-medium text-gray-700">Product Image (max-10mb)</label>
+                                    }
                                     rules={[{ required: true, message: 'Please upload the product image' }]}
                               >
                                     <Upload
@@ -130,7 +132,11 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ open, setOpen }) => {
 
                               <Form.Item
                                     name="ingredientImage"
-                                    label={<label className="font-medium text-gray-700">Ingredient Image</label>}
+                                    label={
+                                          <label className="font-medium text-gray-700">
+                                                Ingredient Image (max-10mb)
+                                          </label>
+                                    }
                                     rules={[{ required: true, message: 'Please upload the ingredient image' }]}
                               >
                                     <Upload

@@ -1,6 +1,7 @@
 'use client';
 
 import { useLoginAdminMutation } from '@/redux/features/auth/authApi';
+import { setAccessToken } from '@/utils/setAccessToken';
 import { Button, Form, Input, message } from 'antd';
 
 import { useRouter } from 'next/navigation';
@@ -15,7 +16,7 @@ const Login = () => {
                   const res = await loginAdmin(values).unwrap();
                   if (res.success) {
                         message.success(res.message);
-                        localStorage.setItem('accessToken', res.data);
+                        setAccessToken(res.data);
                         router.push('/products-details');
                   }
                   if (!res.success) {

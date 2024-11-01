@@ -16,16 +16,29 @@ interface FormValues {
       _id: any;
       name: string;
       description: string;
-      image?: File;
-      ingredientImage?: File;
+      image?: File | string;
+      ingredientImage?: File | string;
 }
 
-const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ open, setOpen, modalData, setModalData }) => {
+const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ open, setOpen, modalData }) => {
       const [form] = Form.useForm<FormValues>();
       const [updateProduct] = useUpdateProductMutation();
       const [loading, setLoading] = useState(false);
       const [imageFile, setImageFile] = useState<File | null>(null);
       const [ingredientImageFile, setIngredientImageFile] = useState<File | null>(null);
+
+      useEffect(() => {
+            if (open) {
+                  form.setFieldsValue({
+                        name: modalData.name,
+                        description: modalData.description,
+                        image: undefined,
+                        ingredientImage: undefined,
+                  });
+                  setImageFile(null);
+                  setIngredientImageFile(null);
+            }
+      }, [open, modalData, form]);
 
       const handleImageUpload = (file: File, type: 'product' | 'ingredient') => {
             if (type === 'product') {
@@ -41,29 +54,30 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ open, setOpen, mo
             const ingredientImage = await getImageURL(values?.ingredientImage?.file);
             return { image, ingredientImage };
       };
+
       const handleUpdateProduct = async (values: any) => {
             setLoading(true);
             const { image, ingredientImage } = await uploadImages(values);
 
-            if (image && ingredientImage) {
-                  const updatedProduct = {
-                        id: modalData._id,
-                        data: {
-                              name: values.name,
-                              description: values.description,
-                              image: image,
-                              ingredientImage: ingredientImage,
-                        },
-                  };
-                  const res = await updateProduct(updatedProduct).unwrap();
+            const updatedProduct = {
+                  id: modalData._id,
+                  data: {
+                        name: values.name,
+                        description: values.description,
+                        image: image || modalData.image,
+                        ingredientImage: ingredientImage || modalData.ingredientImage,
+                  },
+            };
 
-                  if (res.success) {
-                        Swal.fire('Updated!', 'This product updated successfully', 'success');
-                        setOpen(false);
-                        setLoading(false);
-                  }
+            const res = await updateProduct(updatedProduct).unwrap();
+
+            if (res.success) {
+                  Swal.fire('Updated!', 'This product updated successfully', 'success');
+                  setOpen(false);
+                  setLoading(false);
             }
       };
+
       const onFinish = (values: any) => {
             handleUpdateProduct(values);
       };
@@ -74,18 +88,10 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ open, setOpen, mo
 
       return (
             <Modal title="Update Product" open={open} onCancel={closeModal} footer={null} centered>
-                  <Form
-                        initialValues={{
-                              ...modalData,
-                        }}
-                        form={form}
-                        layout="vertical"
-                        onFinish={onFinish}
-                  >
+                  <Form form={form} layout="vertical" onFinish={onFinish}>
                         <Form.Item
                               name="name"
                               label={<label className="font-medium text-gray-700">Product Name</label>}
-                              rules={[{ required: true, message: 'Please enter the product name' }]} // Required rule
                         >
                               <Input
                                     style={{ height: 42 }}
@@ -97,7 +103,6 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ open, setOpen, mo
                         <Form.Item
                               name="description"
                               label={<label className="font-medium text-gray-700">Description</label>}
-                              rules={[{ required: true, message: 'Please enter the product description' }]} // Required rule
                         >
                               <Input.TextArea
                                     placeholder="A gentle, organic baby food."
@@ -109,7 +114,6 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ open, setOpen, mo
                               <Form.Item
                                     name="image"
                                     label={<label className="font-medium text-gray-700">Product Image</label>}
-                                    rules={[{ required: true, message: 'Please upload a product image' }]} // Required rule
                               >
                                     <Upload
                                           listType="picture-card"
@@ -120,6 +124,12 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ open, setOpen, mo
                                           {imageFile ? (
                                                 <img
                                                       src={URL.createObjectURL(imageFile)}
+                                                      alt="Product"
+                                                      className="w-full h-full object-cover rounded-lg"
+                                                />
+                                          ) : modalData.image ? (
+                                                <img
+                                                      src={modalData.image as string}
                                                       alt="Product"
                                                       className="w-full h-full object-cover rounded-lg"
                                                 />
@@ -135,7 +145,6 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ open, setOpen, mo
                               <Form.Item
                                     name="ingredientImage"
                                     label={<label className="font-medium text-gray-700">Ingredient Image</label>}
-                                    rules={[{ required: true, message: 'Please upload an ingredient image' }]} // Required rule
                               >
                                     <Upload
                                           listType="picture-card"
@@ -146,6 +155,12 @@ const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ open, setOpen, mo
                                           {ingredientImageFile ? (
                                                 <img
                                                       src={URL.createObjectURL(ingredientImageFile)}
+                                                      alt="Ingredient"
+                                                      className="w-full h-full object-cover rounded-lg"
+                                                />
+                                          ) : modalData.ingredientImage ? (
+                                                <img
+                                                      src={modalData.ingredientImage as string}
                                                       alt="Ingredient"
                                                       className="w-full h-full object-cover rounded-lg"
                                                 />

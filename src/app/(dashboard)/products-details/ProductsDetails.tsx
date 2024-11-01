@@ -52,7 +52,7 @@ const ProductsDetails = () => {
                   key: 'image',
                   render: (_: any, record: any) => (
                         <div className=" flex items-center gap-1">
-                              <img src={record?.image} alt="image" className="size-12 rounded-full" />
+                              <img src={record?.image} alt="image" className="size-16 rounded-full" />
                         </div>
                   ),
             },
@@ -62,7 +62,7 @@ const ProductsDetails = () => {
                   key: 'ingredientImage',
                   render: (_: any, record: any) => (
                         <div className=" flex items-center gap-1">
-                              <img src={record?.ingredientImage} alt="image" className="size-12 rounded-full" />
+                              <img src={record?.ingredientImage} alt="image" className="size-16 rounded-full" />
                         </div>
                   ),
             },
@@ -75,6 +75,9 @@ const ProductsDetails = () => {
                   title: 'Description',
                   dataIndex: 'description',
                   key: 'description',
+                  render: (desc: string) => {
+                        return <p className="text-gray-700 max-w-[50ch] line-clamp-2">{desc}</p>;
+                  },
             },
 
             {

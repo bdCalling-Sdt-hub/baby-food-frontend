@@ -1,10 +1,10 @@
 const getImageURL = async (image: File) => {
       try {
             const formData = new FormData();
-            formData.append('image', image);
-            const key = process.env.NEXT_PUBLIC_IMGBB_SECRET;
+            formData.append('file', image);
+            formData.append('upload_preset', 'baby-food');
 
-            const response = await fetch(`https://api.imgbb.com/1/upload?key=${key}`, {
+            const response = await fetch(`https://api.cloudinary.com/v1_1/ddhhyc6mr/image/upload`, {
                   method: 'POST',
                   body: formData,
             });
@@ -14,7 +14,7 @@ const getImageURL = async (image: File) => {
             }
 
             const data = await response.json();
-            return data.data.display_url;
+            return data.secure_url;
       } catch (error) {
             console.error(error);
       }
