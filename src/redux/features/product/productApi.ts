@@ -1,3 +1,4 @@
+import { TApiResponse } from '@/types';
 import { baseApi } from '../api/baseApi';
 interface Product {
       _id: string;
@@ -9,12 +10,7 @@ interface Product {
       updatedAt: string;
       __v: number;
 }
-interface ApiResponse {
-      success: boolean;
-      status: number;
-      message: string;
-      data: Product[];
-}
+
 const productApi = baseApi.injectEndpoints({
       endpoints: (build) => ({
             getAllProducts: build.query({
@@ -25,7 +21,7 @@ const productApi = baseApi.injectEndpoints({
                         };
                   },
                   providesTags: ['products'],
-                  transformResponse: (response: ApiResponse) => {
+                  transformResponse: (response: TApiResponse<Product[]>) => {
                         return response.data;
                   },
             }),

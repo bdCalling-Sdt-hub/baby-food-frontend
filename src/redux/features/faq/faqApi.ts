@@ -1,15 +1,23 @@
+import { TApiResponse } from '@/types';
 import { baseApi } from '../api/baseApi';
-
+interface TFaq {
+      _id: string;
+      question: string;
+      answer: string;
+}
 const faqApi = baseApi.injectEndpoints({
       endpoints: (build) => ({
             getAllFaq: build.query({
                   query: () => {
                         return {
-                              url: `/faqs}`,
+                              url: `/faqs`,
                               method: 'GET',
                         };
                   },
                   providesTags: ['faqs'],
+                  transformResponse: (response: TApiResponse<TFaq[]>) => {
+                        return response.data;
+                  },
             }),
             getSingleFaq: build.query({
                   query: (id) => {
