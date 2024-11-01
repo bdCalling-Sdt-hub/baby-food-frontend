@@ -16,7 +16,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
       try {
             const { email, password } = await request.json();
             const admin = await Admin.findOne({ email });
-            console.log(admin, 'from login route');
+            // console.log(admin, 'from login route');
 
             if (!admin) return apiResponse(false, StatusCodes.FORBIDDEN, 'Invalid email');
 

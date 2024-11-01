@@ -1,15 +1,33 @@
 import { baseApi } from '../api/baseApi';
-
+interface Product {
+      _id: string;
+      name: string;
+      description: string;
+      image: string;
+      ingredientImage: string;
+      createdAt: string;
+      updatedAt: string;
+      __v: number;
+}
+interface ApiResponse {
+      success: boolean;
+      status: number;
+      message: string;
+      data: Product[];
+}
 const productApi = baseApi.injectEndpoints({
       endpoints: (build) => ({
             getAllProducts: build.query({
                   query: () => {
                         return {
-                              url: `/products}`,
+                              url: `/products`,
                               method: 'GET',
                         };
                   },
                   providesTags: ['products'],
+                  transformResponse: (response: ApiResponse) => {
+                        return response.data;
+                  },
             }),
             getSingleProduct: build.query({
                   query: (id) => {

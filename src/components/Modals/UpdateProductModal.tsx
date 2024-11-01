@@ -1,26 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form, Input, Upload, Button, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import getImageURL from '@/utils/uploadImage';
-import { useCreateProductMutation } from '@/redux/features/product/productApi';
+import { useUpdateProductMutation } from '@/redux/features/product/productApi';
 import Swal from 'sweetalert2';
 
-interface AddProductFormProps {
+interface UpdateProductFormProps {
       open: boolean;
       setOpen: (open: boolean) => void;
+      modalData: FormValues;
+      setModalData: any;
 }
 
 interface FormValues {
+      _id: any;
       name: string;
       description: string;
       image?: File;
       ingredientImage?: File;
 }
 
-const AddProductForm: React.FC<AddProductFormProps> = ({ open, setOpen }) => {
-      const [createProduct] = useCreateProductMutation();
-      const [loading, setLoading] = useState(false);
+const UpdateProductForm: React.FC<UpdateProductFormProps> = ({ open, setOpen, modalData, setModalData }) => {
       const [form] = Form.useForm<FormValues>();
+      const [updateProduct] = useUpdateProductMutation();
+      const [loading, setLoading] = useState(false);
       const [imageFile, setImageFile] = useState<File | null>(null);
       const [ingredientImageFile, setIngredientImageFile] = useState<File | null>(null);
 
@@ -38,50 +41,51 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ open, setOpen }) => {
             const ingredientImage = await getImageURL(values?.ingredientImage?.file);
             return { image, ingredientImage };
       };
-      const createNewProduct = async (values: FormValues) => {
+      const handleUpdateProduct = async (values: any) => {
             setLoading(true);
             const { image, ingredientImage } = await uploadImages(values);
 
-            if (!image || !ingredientImage) throw new Error('Image upload failed');
+            if (image && ingredientImage) {
+                  const updatedProduct = {
+                        id: modalData._id,
+                        data: {
+                              name: values.name,
+                              description: values.description,
+                              image: image,
+                              ingredientImage: ingredientImage,
+                        },
+                  };
+                  const res = await updateProduct(updatedProduct).unwrap();
 
-            const productData = {
-                  name: values.name,
-                  description: values.description,
-                  image,
-                  ingredientImage,
-            };
-
-            const response = await createProduct(productData).unwrap();
-            if (response.success) {
-                  Swal.fire('Added!', 'Product added successfully.', 'success');
-                  form.resetFields();
-                  setImageFile(null);
-                  setIngredientImageFile(null);
-                  setOpen(false);
-                  setLoading(false);
-            } else {
-                  throw new Error('Failed to add product');
-                  setLoading(false);
+                  if (res.success) {
+                        Swal.fire('Updated!', 'This product updated successfully', 'success');
+                        setOpen(false);
+                        setLoading(false);
+                  }
             }
       };
       const onFinish = (values: any) => {
-            createNewProduct(values);
+            handleUpdateProduct(values);
       };
 
       const closeModal = () => {
             setOpen(false);
-            form.resetFields();
-            setImageFile(null);
-            setIngredientImageFile(null);
       };
 
       return (
-            <Modal title="Add Product" open={open} onCancel={closeModal} footer={null} centered>
-                  <Form form={form} layout="vertical" onFinish={onFinish}>
+            <Modal title="Update Product" open={open} onCancel={closeModal} footer={null} centered>
+                  <Form
+                        initialValues={{
+                              ...modalData,
+                        }}
+                        form={form}
+                        layout="vertical"
+                        onFinish={onFinish}
+                  >
                         <Form.Item
                               name="name"
                               label={<label className="font-medium text-gray-700">Product Name</label>}
-                              rules={[{ required: true, message: 'Please enter the product name' }]}
+                              rules={[{ required: true, message: 'Please enter the product name' }]} // Required rule
                         >
                               <Input
                                     style={{ height: 42 }}
@@ -93,7 +97,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ open, setOpen }) => {
                         <Form.Item
                               name="description"
                               label={<label className="font-medium text-gray-700">Description</label>}
-                              rules={[{ required: true, message: 'Please enter the product description' }]}
+                              rules={[{ required: true, message: 'Please enter the product description' }]} // Required rule
                         >
                               <Input.TextArea
                                     placeholder="A gentle, organic baby food."
@@ -105,7 +109,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ open, setOpen }) => {
                               <Form.Item
                                     name="image"
                                     label={<label className="font-medium text-gray-700">Product Image</label>}
-                                    rules={[{ required: true, message: 'Please upload the product image' }]}
+                                    rules={[{ required: true, message: 'Please upload a product image' }]} // Required rule
                               >
                                     <Upload
                                           listType="picture-card"
@@ -122,7 +126,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ open, setOpen }) => {
                                           ) : (
                                                 <div className="flex flex-col items-center justify-center text-gray-500 text-sm">
                                                       <PlusOutlined className="text-2xl mb-2" />
-                                                      <span>Upload</span>
+                                                      <span>Upload New Image</span>
                                                 </div>
                                           )}
                                     </Upload>
@@ -131,7 +135,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ open, setOpen }) => {
                               <Form.Item
                                     name="ingredientImage"
                                     label={<label className="font-medium text-gray-700">Ingredient Image</label>}
-                                    rules={[{ required: true, message: 'Please upload the ingredient image' }]}
+                                    rules={[{ required: true, message: 'Please upload an ingredient image' }]} // Required rule
                               >
                                     <Upload
                                           listType="picture-card"
@@ -148,7 +152,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ open, setOpen }) => {
                                           ) : (
                                                 <div className="flex flex-col items-center justify-center text-gray-500 text-sm">
                                                       <PlusOutlined className="text-2xl mb-2" />
-                                                      <span>Upload</span>
+                                                      <span>Upload New Ingredient</span>
                                                 </div>
                                           )}
                                     </Upload>
@@ -157,7 +161,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ open, setOpen }) => {
 
                         <Form.Item>
                               <Button style={{ height: 42, width: '100%' }} type="primary" htmlType="submit">
-                                    {loading ? 'Uploading' : 'Add Product'}
+                                    {loading ? 'Updating' : 'Update Product'}
                               </Button>
                         </Form.Item>
                   </Form>
@@ -165,4 +169,4 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ open, setOpen }) => {
       );
 };
 
-export default AddProductForm;
+export default UpdateProductForm;

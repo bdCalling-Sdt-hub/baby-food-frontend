@@ -5,10 +5,13 @@ import { usePathname } from 'next/navigation';
 import MobileDrawer from './MobileDrawer';
 import { useState } from 'react';
 import { MenuOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
+import { useIsLoggedIn } from '@/utils/getLoggedInUser';
 
 const Navbar = () => {
       const path = usePathname();
+      const isAuthenticated = useIsLoggedIn();
+      console.log(isAuthenticated);
+
       const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
       const leftLinks = [
@@ -21,7 +24,7 @@ const Navbar = () => {
             { path: '/sustainability', title: 'Sustainability' },
             { path: '/contact', title: 'Contact' },
             { path: '/faq', title: 'FAQ' },
-            { path: '/login', title: 'Login' },
+            // { path: '/login', title: 'Login' },
       ];
 
       return (
@@ -66,6 +69,19 @@ const Navbar = () => {
                                           {link.title}
                                     </Link>
                               ))}
+
+                              {isAuthenticated ? (
+                                    <Link
+                                          href={'/products-details'}
+                                          className={`tracking-wider text-white whitespace-nowrap `}
+                                    >
+                                          Dashboard
+                                    </Link>
+                              ) : (
+                                    <Link href={'/login'} className={`tracking-wider text-white whitespace-nowrap `}>
+                                          Login
+                                    </Link>
+                              )}
                         </div>
 
                         {/* Mobile Menu Button */}
