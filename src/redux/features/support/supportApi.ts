@@ -5,11 +5,14 @@ const supportApi = baseApi.injectEndpoints({
             getSupport: build.query({
                   query: () => {
                         return {
-                              url: `/supports}`,
+                              url: `/supports`,
                               method: 'GET',
                         };
                   },
                   providesTags: ['supports'],
+                  transformResponse: (response: any) => {
+                        return response.data[0];
+                  },
             }),
 
             createSupport: build.mutation({

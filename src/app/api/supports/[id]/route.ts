@@ -12,10 +12,10 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
             const data = await request.json();
             const product = await Support.findByIdAndUpdate(params.id, data, { new: true });
             if (!product) {
-                  return apiResponse(false, StatusCodes.NOT_FOUND, 'Product not found');
+                  return apiResponse(false, StatusCodes.NOT_FOUND, 'support not found');
             }
 
-            return apiResponse(true, StatusCodes.OK, 'Product updated successfully', product);
+            return apiResponse(true, StatusCodes.OK, 'support updated successfully', product);
       } catch (error) {
             return handleError(error);
       }
