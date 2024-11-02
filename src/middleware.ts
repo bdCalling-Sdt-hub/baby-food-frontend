@@ -3,10 +3,10 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-      console.log('Middleware running');
+      // console.log('Middleware running');
 
       const token = cookies().get('accessToken')?.value;
-      console.log('Token:', token);
+      // console.log('Token:', token);
 
       if (!token) {
             console.log('No token found, redirecting...');

@@ -15,9 +15,9 @@ const Login = () => {
             try {
                   const res = await loginAdmin(values).unwrap();
                   if (res.success) {
-                        message.success(res.message);
-                        localStorage.setItem('accessToken', res.data);
                         setAccessToken(res.data);
+                        localStorage.setItem('accessToken', res.data);
+                        message.success(res.message);
                         router.push('/products-details');
                   }
                   if (!res.success) {
@@ -31,7 +31,7 @@ const Login = () => {
 
       return (
             <div
-                  className={` w-full min-h-screen transition-all duration-1000 ease-in-out  pt-[85px] flex flex-col md:flex-row   items-center justify-center `}
+                  className={` bg-[#bcd49a] w-full min-h-screen transition-all duration-1000 ease-in-out  pt-[85px] flex flex-col md:flex-row   items-center justify-center `}
             >
                   <div className="md:w-1/2">
                         <p className="text-center pb-4 text-3xl text-[#222222] font-[450]">Log in to your account </p>
@@ -56,7 +56,7 @@ const Login = () => {
                                           placeholder="Enter your email"
                                           style={{
                                                 border: '1px solid #E0E4EC',
-                                                height: '42px',
+                                                height: '48px',
                                                 background: 'white',
                                                 borderRadius: '8px',
                                                 outline: 'none',
@@ -80,7 +80,7 @@ const Login = () => {
                                           placeholder="Enter your password"
                                           style={{
                                                 border: '1px solid #E0E4EC',
-                                                height: '42px',
+                                                height: '48px',
                                                 background: 'white',
                                                 borderRadius: '8px',
                                                 outline: 'none',
@@ -95,7 +95,7 @@ const Login = () => {
                                     block
                                     style={{
                                           border: 'none',
-                                          height: '44px',
+                                          height: '48px',
                                           background: '#89a809',
                                           color: 'white',
                                           borderRadius: '8px',
@@ -107,8 +107,6 @@ const Login = () => {
                                     Sign In
                               </Button>
                         </Form>
-
-                        {/* <p className='py-4 text-[#6B6B6B] text-center'>Don’t have an account? <Link href="/register"  className='text-[#00445B] font-semibold '>Register now</Link></p> */}
                   </div>
             </div>
       );

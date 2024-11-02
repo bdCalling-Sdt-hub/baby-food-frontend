@@ -1,11 +1,11 @@
-import FAQ from "@/components/ui/website/faq/FAQ";
+import FAQ from '@/components/ui/website/home/FAQ';
 
 const FaqPage = () => {
-  return (
-    <div>
-      <FAQ />
-    </div>
-  );
+      return (
+            <div>
+                  <FAQ />
+            </div>
+      );
 };
 
 export default FaqPage;

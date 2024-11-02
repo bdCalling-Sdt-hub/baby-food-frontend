@@ -1,7 +1,7 @@
 'use client';
 import Heading from '@/components/shared/Heading';
 import { useGetAllFaqQuery } from '@/redux/features/faq/faqApi';
-import { Collapse, ConfigProvider } from 'antd';
+import { Collapse } from 'antd';
 import { Plus } from 'lucide-react';
 
 const FAQ = () => {
