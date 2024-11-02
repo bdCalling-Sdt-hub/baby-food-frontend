@@ -71,6 +71,7 @@ const Sidebar = () => {
                   confirmButtonText: 'Yes, Logout!',
             }).then((result) => {
                   if (result.isConfirmed) {
+                        localStorage.removeItem('accessToken');
                         removeAccessToken();
                         Swal.fire({
                               text: 'Your logout is successful.',

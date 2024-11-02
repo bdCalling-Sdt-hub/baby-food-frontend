@@ -10,7 +10,6 @@ import { useIsLoggedIn } from '@/utils/getLoggedInUser';
 const Navbar = () => {
       const path = usePathname();
       const isAuthenticated = useIsLoggedIn();
-      console.log(isAuthenticated);
 
       const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -24,7 +23,6 @@ const Navbar = () => {
             { path: '/sustainability', title: 'Sustainability' },
             { path: '/contact', title: 'Contact' },
             { path: '/faq', title: 'FAQ' },
-            // { path: '/login', title: 'Login' },
       ];
 
       return (
