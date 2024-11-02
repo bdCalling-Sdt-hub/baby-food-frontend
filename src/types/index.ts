@@ -4,3 +4,11 @@ export interface TApiResponse<T> {
       message: string;
       data: T;
 }
+
+export interface TProduct {
+      _id: string;
+      name: string;
+      description: string;
+      image: string;
+      ingredientImage: string;
+}
