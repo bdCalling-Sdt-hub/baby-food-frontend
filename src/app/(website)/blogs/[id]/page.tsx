@@ -1,12 +1,12 @@
-import BlogDetails from "@/components/ui/website/blogs/BlogsDetails";
-import React from "react";
+import BlogDetails from '@/components/ui/website/blogs/BlogsDetails';
+import React from 'react';
 
-const BlogsDetailsPage = () => {
-  return (
-    <div>
-      <BlogDetails />
-    </div>
-  );
+const BlogsDetailsPage = ({ params }: { params: { id: string } }) => {
+      return (
+            <div>
+                  <BlogDetails id={params.id} />
+            </div>
+      );
 };
 
 export default BlogsDetailsPage;

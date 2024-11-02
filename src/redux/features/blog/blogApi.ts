@@ -1,10 +1,17 @@
 import { TApiResponse } from '@/types';
 import { baseApi } from '../api/baseApi';
-// interface TFaq {
-//       _id: string;
-//       question: string;
-//       answer: string;
-// }
+
+export interface TBlog {
+      _id: string;
+      title: string;
+      content: string;
+      author: string;
+      image: string;
+      createdAt: string;
+      updatedAt: string;
+      __v: number;
+}
+
 const blogApi = baseApi.injectEndpoints({
       endpoints: (build) => ({
             getAllBlog: build.query({
@@ -15,7 +22,7 @@ const blogApi = baseApi.injectEndpoints({
                         };
                   },
                   providesTags: ['blogs'],
-                  transformResponse: (response: TApiResponse<Record<string, any>[]>) => {
+                  transformResponse: (response: TApiResponse<TBlog[]>) => {
                         return response.data;
                   },
             }),
@@ -27,6 +34,10 @@ const blogApi = baseApi.injectEndpoints({
                         };
                   },
                   providesTags: ['blogs'],
+
+                  transformResponse: (response: TApiResponse<TBlog>) => {
+                        return response.data;
+                  },
             }),
             createBlog: build.mutation({
                   query: (data) => {
@@ -65,6 +76,7 @@ export const {
       useCreateBlogMutation,
       useDeleteBlogMutation,
       useGetAllBlogQuery,
+
       useGetSingleBlogQuery,
       useUpdateBlogMutation,
 } = blogApi;
