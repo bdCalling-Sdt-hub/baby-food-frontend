@@ -18,7 +18,8 @@ const Login = () => {
                         setAccessToken(res.data);
                         localStorage.setItem('accessToken', res.data);
                         message.success(res.message);
-                        router.push('/products-details');
+                        router.push('/');
+                        // window.location.reload();
                   }
                   if (!res.success) {
                         message.success(res.message);

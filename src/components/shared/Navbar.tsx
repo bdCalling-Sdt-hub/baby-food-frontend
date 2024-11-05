@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import MobileDrawer from './MobileDrawer';
 import { useState } from 'react';
 import { MenuOutlined } from '@ant-design/icons';
@@ -10,6 +10,7 @@ import { useIsLoggedIn } from '@/utils/getLoggedInUser';
 const Navbar = () => {
       const path = usePathname();
       const isAuthenticated = useIsLoggedIn();
+      const router = useRouter();
 
       const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -69,12 +70,12 @@ const Navbar = () => {
                               ))}
 
                               {isAuthenticated ? (
-                                    <Link
-                                          href={'/products-details'}
+                                    <button
+                                          onClick={() => router.push('/products-details')}
                                           className={`tracking-wider text-white whitespace-nowrap `}
                                     >
                                           Dashboard
-                                    </Link>
+                                    </button>
                               ) : (
                                     <Link href={'/login'} className={`tracking-wider text-white whitespace-nowrap `}>
                                           Login

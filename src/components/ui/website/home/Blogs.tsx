@@ -17,7 +17,7 @@ export default function Blogs() {
                               </div>
                               <div className="col-span-9">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7">
-                                          {blogs?.map((blog, index) => (
+                                          {blogs?.slice(0, 3).map((blog, index) => (
                                                 <BlogCard key={index} blog={blog} />
                                           ))}
                                     </div>
