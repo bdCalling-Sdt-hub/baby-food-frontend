@@ -1,74 +1,88 @@
-import Heading from "@/components/shared/Heading";
-import { Apple, Droplets, HandPlatter, MapPin } from "lucide-react";
+"use client";
+
+import { motion } from "framer-motion";
+import Button from "@/components/shared/Button";
+import Link from "next/link";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const textVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeInOut" },
+  },
+};
 
 const Ingredient = () => {
   return (
-    <div className="container mt-14">
-      <Heading className="items-center mb-20">As Fresh As It Gets</Heading>
-      <div className="grid grid-cols-12 items-center">
-        <div className="col-span-3">
-          <div className="flex flex-col gap-5">
-            <div className="bg-[#829f01] w-full h-60 rounded-[50px] rounded-br-none relative">
-              <div className="flex items-center justify-center h-full w-full">
-                <div>
-                  <div className=" bg-white w-16 h-16 flex justify-center items-center  rounded-full mx-auto mb-3">
-                    <Droplets fill="#829f01" size={40} />
-                  </div>
-                  <h2 className="text-white text-2xl text-center">
-                    Cold pressed <br /> & always fresh
-                  </h2>
-                </div>
-              </div>
-            </div>
-            <div className="bg-orange-600 w-full h-60 rounded-[50px] rounded-tr-none relative">
-              <div className="flex items-center justify-center h-full w-full">
-                <div>
-                  <div className=" bg-white w-16 h-16 flex justify-center items-center  rounded-full mx-auto mb-3">
-                    <HandPlatter fill="#829f01" size={40} />
-                  </div>
-                  <h2 className="text-white text-2xl text-center">
-                    100% recyclable <br /> packaging
-                  </h2>
-                </div>
-              </div>
-            </div>
+    <div className="bg-[#d1e3b7] py-32">
+      <div className="container grid grid-cols-1 md:grid-cols-2 justify-center gap-10 items-center">
+        <div className="w-full">
+          <img alt="image" className="w-full mx-auto" src="/about.png" />
+        </div>
+
+        <motion.div
+          className="space-y-5 text-center md:text-start"
+          initial="hidden"
+          whileInView="visible"
+          variants={containerVariants}
+          viewport={{ once: false }}
+        >
+          <div>
+            <img
+              className="mx-auto md:mx-0 size-24"
+              alt="image"
+              src="/green_leaf.png"
+            />
           </div>
-        </div>
-        <div className="col-span-6">
-          <img
-            alt="image"
-            className="mx-auto w-[80%]"
-            src="/image_hero_04.png"
-          />
-        </div>
-        <div className="col-span-3">
-          <div className="flex flex-col gap-5">
-            <div className="bg-[#fc7116] w-full h-60 rounded-[50px] rounded-bl-none relative">
-              <div className="flex items-center justify-center h-full w-full">
-                <div>
-                  <div className=" bg-white w-16 h-16 flex justify-center items-center  rounded-full mx-auto mb-3">
-                    <Apple fill="#829f01" size={40} />
-                  </div>
-                  <h2 className="text-white text-2xl text-center">
-                    100% Organic <br /> Ingredient
-                  </h2>
-                </div>
-              </div>
-            </div>
-            <div className="bg-[#f8b413] w-full h-60 rounded-[50px] rounded-tl-none">
-              <div className="flex items-center justify-center h-full w-full">
-                <div>
-                  <div className=" bg-white w-16 h-16 flex justify-center items-center  rounded-full mx-auto mb-3">
-                    <MapPin fill="#829f01" size={40} />
-                  </div>
-                  <h2 className="text-white text-2xl text-center">
-                    Small Local <br /> Producer
-                  </h2>
-                </div>
-              </div>
-            </div>
+
+          <motion.h2
+            className="text-3xl md:text-5xl oswald font-medium text-[#657c1e] "
+            variants={textVariants}
+          >
+            Wholesome Goodness for Tiny Tastes
+          </motion.h2>
+
+          <motion.p className="text-[#5e741d] " variants={textVariants}>
+            Our organic baby food cubes are specially crafted to provide the
+            highest nutritional value for your little ones. Each cube is made
+            from 100% organic fruits and vegetables, carefully selected and
+            blended into smooth, flavourful purées. The cubes are then
+            flash-frozen to lock in freshness, nutrients, and taste, making them
+            a convenient and healthy choice for parents.
+          </motion.p>
+
+          {/* Button */}
+          <motion.div
+            className="flex flex-wrap justify-center md:justify-start items-center gap-5"
+            variants={textVariants}
+          >
+            <Link href="/products">
+              <Button className="bg-[#ffe4d8] text-[#5e741d]">
+                View Our Products
+              </Button>
+            </Link>
+          </motion.div>
+
+          {/* Icon Section - No stagger here */}
+          <div className="flex items-center justify-center md:justify-start">
+            <img
+              className="w-[75%] mx-auto md:-mx-5 block"
+              src={"/tag.png"}
+              alt=""
+            />
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

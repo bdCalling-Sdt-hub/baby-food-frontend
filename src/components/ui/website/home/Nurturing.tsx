@@ -1,36 +1,67 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Button from "@/components/shared/Button";
 import Heading from "@/components/shared/Heading";
-import { CircleCheck } from "lucide-react";
+import Link from "next/link";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.4,
+    },
+  },
+};
+
+const textVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeInOut" },
+  },
+};
 
 const Nurturing = () => {
   return (
-    <div className="mt-28">
-      <div className="container grid grid-cols-2 gap-10 items-center">
-        <div className="space-y-5">
-          <Heading className="">
-            Nurturing your <br /> baby&apos;s needs
-          </Heading>
-          <p>
-            We’ve researched hundreds of great-tasting ingredients to find the
-            ones that really pack a nutritional punch – so you don’t have to! We
-            only use organic ingredients – no nasties! It’s guilt-free goodness!
-          </p>
-          <div>
-            {["100% Organic", "Non gmo", "Wholesome ingredients"].map(
-              (item, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <span>
-                    <CircleCheck fill="#89a809" color="#fff" />
-                  </span>
-                  <span>{item}</span>
-                </div>
-              )
-            )}
+    <div className="bg-[#d2f0ff] pt-20 md:pb-10 xl:pb-0 text-[#4c839a]">
+      <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+          <div className="order-last h-full">
+            <img alt="image" className="w-full" src="/baby-banana.png" />
           </div>
-          <Button className="bg-secondary">View Our Products</Button>
-        </div>
-        <div className="">
-          <img alt="image" className="w-[100%]" src="/baby-banana.png" />
+
+          {/* Text section with stagger animations */}
+          <motion.div
+            className="space-y-5 text-center md:text-start"
+            initial="hidden"
+            whileInView="visible"
+            variants={containerVariants}
+            viewport={{ once: false, amount: 0.5 }}
+          >
+            <motion.div variants={textVariants}>
+              <Heading className="text-[#4c839a]">
+                Nourish,
+                <br /> Enjoy, Repeat
+              </Heading>
+            </motion.div>
+
+            <motion.p className="text-lg" variants={textVariants}>
+              We envision a world where parents can focus on enjoying mealtime
+              with their babies, knowing they are providing high-quality, fresh
+              food that supports healthy development.
+            </motion.p>
+
+            <motion.div variants={textVariants}>
+              <Link className="mt-12" href="/products">
+                <Button className="bg-[#84b2ce] text-[#ccf0fd]">
+                  View Our Products
+                </Button>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </div>

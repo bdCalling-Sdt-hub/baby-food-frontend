@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import clsx from "clsx";
 
 interface IButton {
   className?: string;
@@ -10,7 +11,11 @@ const Button: React.FC<IButton> = ({ className, onClick, children }) => {
   return (
     <button
       onClick={onClick}
-      className={`${className} text-white px-5 py-3 rounded-full rounded-tl-none tracking-wide`}
+      className={clsx(
+        "uppercase px-5 py-3 text-xl rounded-full tracking-wide",
+        !className?.includes("text-") && "text-white",
+        className
+      )}
     >
       {children}
     </button>

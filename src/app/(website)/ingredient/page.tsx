@@ -4,7 +4,6 @@ const IngredientPage = () => {
   return (
     <div>
       <Ingredient />
-      <Ingredient />
     </div>
   );
 };

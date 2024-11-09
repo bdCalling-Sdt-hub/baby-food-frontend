@@ -1,26 +1,20 @@
-"use client";
-import Heading from "@/components/shared/Heading";
-import ProductCard from "@/components/shared/ProductCard";
-import { useEffect, useState } from "react";
+'use client';
+import Heading from '@/components/shared/Heading';
+import ProductCard from '@/components/shared/ProductCard';
+import { useGetAllProductsQuery } from '@/redux/features/product/productApi';
 
 export default function Products() {
-  const [foods, setFoods] = useState([]);
-  useEffect(() => {
-    fetch("/fake.json")
-      .then((res) => res.json())
-      .then((data) => setFoods(data.products));
-  }, []);
-  return (
-    <div className="container">
-      <Heading className="items-center text-center">
-        {" "}
-        Our New Arriver <br /> Products
-      </Heading>
-      <div className="grid grid-cols-3 mt-20 gap-10">
-        {foods.map((food, index) => (
-          <ProductCard key={index} food={food} />
-        ))}
-      </div>
-    </div>
-  );
+      const { data: products } = useGetAllProductsQuery([]);
+      return (
+            <div className="container my-20 md:my-10 min-h-screen">
+                  <Heading className="items-center text-[#eb9b9b] oswald text-center">
+                        Our New Arrival <br /> Products
+                  </Heading>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 mt-10 ">
+                        {products?.map((product, index) => (
+                              <ProductCard key={index} product={product} />
+                        ))}
+                  </div>
+            </div>
+      );
 }

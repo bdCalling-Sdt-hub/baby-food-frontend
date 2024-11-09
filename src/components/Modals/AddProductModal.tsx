@@ -1,173 +1,174 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Form, Input, Modal } from "antd";
-import { Images } from "lucide-react";
-import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import TextInput from "../shared/TextInput";
+import { useState } from 'react';
+import { Form, Input, Upload, Button, Modal } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import getImageURL from '@/utils/uploadImage';
+import { useCreateProductMutation } from '@/redux/features/product/productApi';
+import Swal from 'sweetalert2';
 
-interface propsType {
-  setOpen: any;
-  open: boolean;
-  modalData: any;
-  setModalData: any;
+interface AddProductFormProps {
+      open: boolean;
+      setOpen: (open: boolean) => void;
 }
 
-const AddProductModal = ({
-  setOpen,
-  open,
-  modalData,
-  setModalData,
-}: propsType) => {
-  const [form] = Form.useForm();
-  const [imgFile, setImgFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState<any>();
+interface FormValues {
+      name: string;
+      description: string;
+      image?: File;
+      ingredientImage?: File;
+}
 
-  const handleChange = (e: any) => {
-    const file = e.target.files[0];
-    setImgFile(file);
-    setImageUrl(URL.createObjectURL(file));
-  };
+const AddProductForm: React.FC<AddProductFormProps> = ({ open, setOpen }) => {
+      const [createProduct] = useCreateProductMutation();
+      const [loading, setLoading] = useState(false);
+      const [form] = Form.useForm<FormValues>();
+      const [imageFile, setImageFile] = useState<File | null>(null);
+      const [ingredientImageFile, setIngredientImageFile] = useState<File | null>(null);
 
-  useEffect(() => {
-    if (modalData) {
-      form.setFieldsValue({
-        name: modalData?.name,
-        category: modalData?.category,
-        price: modalData?.price,
-        description: modalData?.description,
-      });
-      setImageUrl(modalData?.image);
-    }
-  }, [modalData, form]);
+      const handleImageUpload = (file: File, type: 'product' | 'ingredient') => {
+            if (type === 'product') {
+                  setImageFile(file);
+            } else if (type === 'ingredient') {
+                  setIngredientImageFile(file);
+            }
+            return false;
+      };
 
-  const onFinish = async (values: any) => {
-    const formdata = new FormData();
+      const uploadImages = async (values: any) => {
+            const image = await getImageURL(values?.image?.file);
+            const ingredientImage = await getImageURL(values?.ingredientImage?.file);
+            return { image, ingredientImage };
+      };
+      const createNewProduct = async (values: FormValues) => {
+            setLoading(true);
+            const { image, ingredientImage } = await uploadImages(values);
 
-    const { imagess, ...otherValues } = values;
+            if (!image || !ingredientImage) throw new Error('Image upload failed');
 
-    if (imgFile) {
-      formdata.append("image", imgFile);
-    }
+            const productData = {
+                  name: values.name,
+                  description: values.description,
+                  image,
+                  ingredientImage,
+            };
 
-    Object.entries(otherValues).forEach(([field, value]: any) => {
-      formdata.append(field, value);
-    });
+            const response = await createProduct(productData).unwrap();
+            if (response.success) {
+                  Swal.fire('Added!', 'Product added successfully.', 'success');
+                  form.resetFields();
+                  setImageFile(null);
+                  setIngredientImageFile(null);
+                  setOpen(false);
+                  setLoading(false);
+            } else {
+                  throw new Error('Failed to add product');
+                  setLoading(false);
+            }
+      };
+      const onFinish = (values: any) => {
+            createNewProduct(values);
+      };
 
-    const id = modalData?.id;
+      const closeModal = () => {
+            setOpen(false);
+            form.resetFields();
+            setImageFile(null);
+            setIngredientImageFile(null);
+      };
 
-    if (modalData?.id) {
-      Swal.fire({
-        text: "Product Update Successfully",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      setImageUrl(null);
-      form.resetFields();
-      setOpen(false);
-      setModalData(null);
-    } else {
-      Swal.fire({
-        text: "Product Added Successfully",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      setImageUrl(null);
-      form.resetFields();
-      setOpen(false);
-      setModalData(null);
-    }
-  };
+      return (
+            <Modal title="Add Product" open={open} onCancel={closeModal} footer={null} centered>
+                  <Form form={form} layout="vertical" onFinish={onFinish}>
+                        <Form.Item
+                              name="name"
+                              label={<label className="font-medium text-gray-700">Product Name</label>}
+                              rules={[{ required: true, message: 'Please enter the product name' }]}
+                        >
+                              <Input
+                                    style={{ height: 42 }}
+                                    placeholder="Organic Baby Food"
+                                    className="border-gray-300 rounded-lg w-full"
+                              />
+                        </Form.Item>
 
-  return (
-    <div>
-      <Modal
-        open={open}
-        onCancel={() => {
-          setOpen(false);
-          setImageUrl(null);
-          setModalData(null);
-          form.resetFields();
-        }}
-        centered
-        footer={false}
-        width={600}
-      >
-        <div className=" p-5 py-0">
-          <p className=" pb-3 text-lg font-[500]">
-            {" "}
-            {modalData ? "Update Product" : "Add Product"}
-          </p>
-          <Form onFinish={onFinish} form={form} layout="vertical">
-            <TextInput name="name" label="Product Name" />
+                        <Form.Item
+                              name="description"
+                              label={<label className="font-medium text-gray-700">Description</label>}
+                              rules={[{ required: true, message: 'Please enter the product description' }]}
+                        >
+                              <Input.TextArea
+                                    placeholder="A gentle, organic baby food."
+                                    className="border-gray-300 rounded-lg w-full"
+                              />
+                        </Form.Item>
 
-            <div className=" py-[4px]">
-              <p className="text-[#6D6D6D] py-1">Product Image</p>
+                        <div className="flex items-center gap-10 justify-center">
+                              <Form.Item
+                                    name="image"
+                                    label={
+                                          <label className="font-medium text-gray-700">Product Image (max-10mb)</label>
+                                    }
+                                    rules={[{ required: true, message: 'Please upload the product image' }]}
+                              >
+                                    <Upload
+                                          listType="picture-card"
+                                          beforeUpload={(file) => handleImageUpload(file, 'product')}
+                                          showUploadList={false}
+                                          className="w-full"
+                                    >
+                                          {imageFile ? (
+                                                <img
+                                                      src={URL.createObjectURL(imageFile)}
+                                                      alt="Product"
+                                                      className="w-full h-full object-cover rounded-lg"
+                                                />
+                                          ) : (
+                                                <div className="flex flex-col items-center justify-center text-gray-500 text-sm">
+                                                      <PlusOutlined className="text-2xl mb-2" />
+                                                      <span>Upload</span>
+                                                </div>
+                                          )}
+                                    </Upload>
+                              </Form.Item>
 
-              <label
-                htmlFor="image"
-                style={{ display: "block" }}
-                className="p-1 border rounded-lg"
-              >
-                <Form.Item name="imagess">
-                  <div className="flex justify-center items-center w-full h-[100px] ">
-                    {imageUrl ? (
-                      <img
-                        src={imageUrl}
-                        style={{
-                          height: "100%",
-                          width: "100%",
-                          borderRadius: "10px",
-                          objectFit: "contain",
-                        }}
-                        alt=""
-                      />
-                    ) : (
-                      <Images className="text-8xl flex items-center justify-center text-[#666666] font-[400]" />
-                    )}
-                  </div>
+                              <Form.Item
+                                    name="ingredientImage"
+                                    label={
+                                          <label className="font-medium text-gray-700">
+                                                Ingredient Image (max-10mb)
+                                          </label>
+                                    }
+                                    rules={[{ required: true, message: 'Please upload the ingredient image' }]}
+                              >
+                                    <Upload
+                                          listType="picture-card"
+                                          beforeUpload={(file) => handleImageUpload(file, 'ingredient')}
+                                          showUploadList={false}
+                                          className="w-full"
+                                    >
+                                          {ingredientImageFile ? (
+                                                <img
+                                                      src={URL.createObjectURL(ingredientImageFile)}
+                                                      alt="Ingredient"
+                                                      className="w-full h-full object-cover rounded-lg"
+                                                />
+                                          ) : (
+                                                <div className="flex flex-col items-center justify-center text-gray-500 text-sm">
+                                                      <PlusOutlined className="text-2xl mb-2" />
+                                                      <span>Upload</span>
+                                                </div>
+                                          )}
+                                    </Upload>
+                              </Form.Item>
+                        </div>
 
-                  <div className="hidden">
-                    <Input id="image" type="file" onInput={handleChange} />
-                  </div>
-                </Form.Item>
-              </label>
-            </div>
-
-            <TextInput name="category" label="Product Category" />
-            <TextInput name="price" label="Price" />
-
-            <div>
-              <p className="text-[#6D6D6D] py-1">Description</p>
-              <Form.Item
-                name="description"
-                rules={[
-                  {
-                    required: true,
-                    message: "This field is required",
-                  },
-                ]}
-              >
-                <Input.TextArea className="w-[100%] border outline-none h-[80px] resize-none" />
-              </Form.Item>
-            </div>
-
-            <Form.Item className="text-center mt-6">
-              <button
-                type="submit"
-                className="bg-primary  w-full text-[#FEFEFE] rounded-md h-[43px]"
-                style={{ height: "45px" }}
-              >
-                Confirm
-              </button>
-            </Form.Item>
-          </Form>
-        </div>
-      </Modal>
-    </div>
-  );
+                        <Form.Item>
+                              <Button style={{ height: 42, width: '100%' }} type="primary" htmlType="submit">
+                                    {loading ? 'Uploading' : 'Add Product'}
+                              </Button>
+                        </Form.Item>
+                  </Form>
+            </Modal>
+      );
 };
 
-export default AddProductModal;
+export default AddProductForm;

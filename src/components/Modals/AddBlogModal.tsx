@@ -1,171 +1,157 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Form, Input, Modal } from "antd";
-import { Image } from "lucide-react";
-import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import TextInput from "../shared/TextInput";
+import { Form, Input, Upload, Button, Modal } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import Swal from 'sweetalert2';
+import JoditEditor from 'jodit-react';
+import { useCreateBlogMutation } from '@/redux/features/blog/blogApi';
+import getImageURL from '@/utils/uploadImage';
+import { useState } from 'react';
 
-interface propsType {
-  setOpen: any;
-  open: boolean;
-  modalData: any;
-  setModalData: any;
+interface BlogModalProps {
+      open: boolean;
+      setOpen: (open: boolean) => void;
 }
 
-const AddBlogModal = ({
-  setOpen,
-  open,
-  modalData,
-  setModalData,
-}: propsType) => {
-  const [form] = Form.useForm();
-  const [imgFile, setImgFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState<any>();
+interface BlogFormValues {
+      title: string;
+      content: string;
+      author: string;
+      image?: File;
+}
 
-  const handleChange = (e: any) => {
-    const file = e.target.files[0];
-    setImgFile(file);
-    setImageUrl(URL.createObjectURL(file));
-  };
+const BlogModal: React.FC<BlogModalProps> = ({ setOpen, open }) => {
+      const [form] = Form.useForm<BlogFormValues>();
+      const [loading, setLoading] = useState(false);
+      const [imageFile, setImageFile] = useState<File | null>(null);
+      const [content, setContent] = useState<string>('');
+      const [createBlog] = useCreateBlogMutation();
 
-  useEffect(() => {
-    if (modalData) {
-      form.setFieldsValue({
-        subtitle: modalData?.subTitle,
-        title: modalData?.title,
-        description: modalData?.description,
-      });
-      setImageUrl(modalData?.BlogImage);
-    }
-  }, [modalData, form]);
+      const handleImageUpload = (file: File) => {
+            setImageFile(file);
+            return false;
+      };
+      const uploadImages = async (values: any) => {
+            const image = await getImageURL(values.image?.file);
 
-  const onFinish = async (values: any) => {
-    const formdata = new FormData();
+            return { image };
+      };
+      const onFinish = async (values: any) => {
+            setLoading(true);
+            const { image } = await uploadImages(values);
+            const blogData = {
+                  title: values?.title,
+                  content,
+                  author: values?.author,
+                  image: image,
+            };
+            console.log('blogs data', blogData);
+            if (image) {
+                  const res = await createBlog(blogData).unwrap();
+                  if (res.success) {
+                        Swal.fire('Created', 'Blog is created successfully', 'success');
+                        setLoading(false);
+                        setOpen(false);
+                        form.resetFields();
+                        setImageFile(null);
+                        setContent('');
+                  }
+            } else {
+                  console.log('object');
+            }
+      };
 
-    const { imagess, ...otherValues } = values;
+      const closeModal = () => {
+            setLoading(false);
+            setOpen(false);
+            form.resetFields();
+            setImageFile(null);
+            setContent('');
+      };
 
-    if (imgFile) {
-      formdata.append("image", imgFile);
-    }
+      return (
+            <Modal width={800} title={' Add Blog Post'} open={open} onCancel={closeModal} footer={null} centered>
+                  <Form form={form} layout="vertical" onFinish={onFinish} initialValues={{ content }}>
+                        <Form.Item
+                              name="title"
+                              label={<label className="font-medium text-gray-700">Blog Title</label>}
+                              rules={[{ required: true, message: 'Please enter the blog title' }]}
+                        >
+                              <Input
+                                    style={{
+                                          height: 42,
+                                    }}
+                                    placeholder="Exploring the Wonders of the Universe"
+                                    className="border-gray-300 rounded-lg w-full"
+                              />
+                        </Form.Item>
 
-    Object.entries(otherValues).forEach(([field, value]: any) => {
-      formdata.append(field, value);
-    });
+                        <Form.Item
+                              name="content"
+                              label={<label className="font-medium text-gray-700">Content</label>}
+                              rules={[
+                                    {
+                                          required: true,
+                                    },
+                                    {
+                                          validator: (_, value) => {
+                                                if (!content || content.trim() === '') {
+                                                      return Promise.reject(new Error('Content cannot be empty'));
+                                                }
+                                                return Promise.resolve();
+                                          },
+                                    },
+                              ]}
+                        >
+                              <JoditEditor value={content} onChange={(newContent) => setContent(newContent)} />
+                        </Form.Item>
 
-    const id = modalData?.id;
+                        <Form.Item
+                              name="author"
+                              label={<label className="font-medium text-gray-700">Author</label>}
+                              rules={[{ required: true, message: 'Please enter the author name' }]}
+                        >
+                              <Input
+                                    style={{
+                                          height: 42,
+                                    }}
+                                    placeholder="John Doe"
+                                    className="border-gray-300 rounded-lg w-full"
+                              />
+                        </Form.Item>
 
-    if (modalData?.id) {
-      Swal.fire({
-        text: "Blog Update Successfully",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      setImageUrl(null);
-      form.resetFields();
-      setOpen(false);
-      setModalData(null);
-    } else {
-      Swal.fire({
-        text: "Blog Added Successfully",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      setImageUrl(null);
-      form.resetFields();
-      setOpen(false);
-      setModalData(null);
-    }
-  };
+                        <Form.Item
+                              name="image"
+                              label={<label className="font-medium text-gray-700">Blog Image (max-10mb)</label>}
+                              rules={[{ required: true, message: 'Please upload the blog image' }]}
+                        >
+                              <Upload
+                                    listType="picture-card"
+                                    beforeUpload={handleImageUpload}
+                                    showUploadList={false}
+                                    className="w-full"
+                              >
+                                    {imageFile ? (
+                                          <img
+                                                src={URL.createObjectURL(imageFile)}
+                                                alt="Blog"
+                                                className="w-full h-full object-cover rounded-lg"
+                                          />
+                                    ) : (
+                                          <div className="flex flex-col items-center justify-center text-gray-500 text-sm">
+                                                <PlusOutlined className="text-2xl mb-2" />
+                                                <span>Upload</span>
+                                          </div>
+                                    )}
+                              </Upload>
+                        </Form.Item>
 
-  return (
-    <div>
-      <Modal
-        open={open}
-        onCancel={() => {
-          setOpen(false);
-          setImageUrl(null);
-          setModalData(null);
-          form.resetFields();
-        }}
-        centered
-        footer={false}
-        width={600}
-      >
-        <div className=" p-5 py-0">
-          <p className=" pb-3 text-lg font-[500]">
-            {" "}
-            {modalData ? "Update Blog" : "Add Blog"}
-          </p>
-          <Form onFinish={onFinish} form={form} layout="vertical">
-            <TextInput name="title" label="Title" />
-
-            <div className=" py-[4px]">
-              <p className="text-[#6D6D6D] py-1">Blog Image</p>
-
-              <label
-                htmlFor="image"
-                style={{ display: "block" }}
-                className="p-1 border rounded-lg"
-              >
-                <Form.Item name="imagess">
-                  <div className="flex justify-center items-center w-full h-[100px] ">
-                    {imageUrl ? (
-                      <img
-                        src={imageUrl}
-                        style={{
-                          height: "100px",
-                          width: "100px",
-                          borderRadius: "10px",
-                          objectFit: "contain",
-                        }}
-                        alt=""
-                      />
-                    ) : (
-                      <Image />
-                    )}
-                  </div>
-
-                  <div className="hidden">
-                    <Input id="image" type="file" onInput={handleChange} />
-                  </div>
-                </Form.Item>
-              </label>
-            </div>
-
-            <TextInput name="subtitle" label="Subtitle" />
-
-            <div>
-              <p className="text-[#6D6D6D] py-1">Description</p>
-              <Form.Item
-                name="description"
-                rules={[
-                  {
-                    required: true,
-                    message: "This field is required",
-                  },
-                ]}
-              >
-                <Input.TextArea className="w-[100%] border outline-none h-[80px] resize-none" />
-              </Form.Item>
-            </div>
-
-            <Form.Item className="text-center mt-6">
-              <button
-                type="submit"
-                className="bg-primary  w-full text-[#FEFEFE] rounded-md h-[43px]"
-                style={{ height: "45px" }}
-              >
-                Confirm
-              </button>
-            </Form.Item>
-          </Form>
-        </div>
-      </Modal>
-    </div>
-  );
+                        <Form.Item>
+                              <Button type="primary" htmlType="submit" style={{ height: 42, width: '100%' }}>
+                                    {loading ? 'Uploading...' : ' Add Blog'}
+                              </Button>
+                        </Form.Item>
+                  </Form>
+            </Modal>
+      );
 };
 
-export default AddBlogModal;
+export default BlogModal;

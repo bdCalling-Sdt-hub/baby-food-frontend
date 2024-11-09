@@ -1,14 +1,16 @@
+import { LucideUsers2 } from 'lucide-react';
+
 const DashboardNavbar = () => {
-  return (
-    <div className="bg-footer text-white flex justify-end items-center">
-      <div className="flex items-center">
-        <img src="/person.png" alt="" className="w-14 h-14 rounded-full" />
-        <div>
-          <p className="p-3 h-3 font-medium ">Admin</p>
-        </div>
-      </div>
-    </div>
-  );
+      return (
+            <div className="bg-[#bcd49a] h-16  text-white flex justify-end items-center px-8">
+                  <div className="flex items-center gap-4">
+                        <LucideUsers2 />
+                        <div>
+                              <p className="font-medium ">Gigi rossi</p>
+                        </div>
+                  </div>
+            </div>
+      );
 };
 
 export default DashboardNavbar;
