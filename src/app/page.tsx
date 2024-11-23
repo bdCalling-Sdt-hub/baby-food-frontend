@@ -5,6 +5,8 @@ import HeroSection from '@/components/ui/website/home/HeroSection';
 import Ingredient from '@/components/ui/website/home/Ingredient';
 import Nurturing from '@/components/ui/website/home/Nurturing';
 import ProductInfo from '@/components/ui/website/home/ProductInfo';
+import ProductOverview from '@/components/ui/website/home/ProductOverview';
+import ProductProcess from '@/components/ui/website/home/ProductProcess';
 import Products from '@/components/ui/website/home/Products';
 
 export default function HomePage() {
@@ -15,6 +17,8 @@ export default function HomePage() {
                   <Products />
                   <Ingredient />
                   <Nurturing />
+                  <ProductOverview />
+                  <ProductProcess />
                   <Blogs />
                   <div className="bg-[#77ab86]">
                         <FAQ />

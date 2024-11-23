@@ -30,7 +30,7 @@ const BlogDetails = ({ id }: { id: string }) => {
 
                         <p className="text-sm text-gray-500 mb-4">• 2 Min Read</p>
 
-                        <div dangerouslySetInnerHTML={{ __html: blog?.content as TrustedHTML }} />
+                        <div className="w-full" dangerouslySetInnerHTML={{ __html: blog?.content as TrustedHTML }} />
                   </div>
             </div>
       );
