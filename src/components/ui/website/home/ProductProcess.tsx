@@ -34,7 +34,7 @@ const ProductProcess = () => {
                   <div className="container">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                               <div className="order-last h-full">
-                                    <img alt="image" className="w-[100%] h-full mx-auto" src="/process.png" />
+                                    <img alt="image" className="md:size-[420px] w-[90%] mx-auto" src="/process.png" />
                               </div>
 
                               {/* Text section with stagger animations */}
@@ -80,20 +80,20 @@ const ProductProcess = () => {
                                                 variants={textVariants}
                                           >
                                                 At our facility, we gently steam and blend the produce into smooth and
-                                                flavorful purees, ensuring they’re packed with all the essential
+                                                flavourful purees, ensuring they’re packed with all the essential
                                                 vitamins and minerals for growing babies.
                                           </motion.p>
                                     </div>
                                     <div>
                                           <motion.h3 className="text-lg font-medium " variants={textVariants}>
-                                                3. Flash-Freezing to Lock in Freshness
+                                                4. Flash-Freezing to Lock in Freshness
                                           </motion.h3>
                                           <motion.p
                                                 className="text-lg font-medium text-[#d5dad7]"
                                                 variants={textVariants}
                                           >
                                                 After pureeing, our products are flash-frozen at the peak of their
-                                                freshness. This rapid freezing process preserves the nutrients, flavor,
+                                                freshness. This rapid freezing process preserves the nutrients, flavour,
                                                 and texture, delivering parents a convenient and wholesome solution for
                                                 feeding their babies.
                                           </motion.p>

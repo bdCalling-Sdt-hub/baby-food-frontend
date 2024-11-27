@@ -28,7 +28,7 @@ const ProductOverview = () => {
                   <div className="container">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                               <div className="order-last h-full">
-                                    <img alt="image" className="w-[400px] h-full mx-auto" src="/overview.png" />
+                                    <img alt="image" className="w-[80%] md:w-[50%]  mx-auto" src="/overview.png" />
                               </div>
 
                               {/* Text section with stagger animations */}
@@ -50,7 +50,7 @@ const ProductOverview = () => {
                                           grow with your child. Our versatile products are crafted to adapt from purees
                                           for little ones just starting on solids to serving as a nutritious base for
                                           recipes as they grow. In the early months, our purees offer wholesome, simple
-                                          ingredient options perfect for introducing natural flavors and textures. But
+                                          ingredient options perfect for introducing natural flavours and textures. But
                                           as your baby transitions into a toddler, Cove Valley cubes become a
                                           time-saving way to enhance a variety of family-friendly meals. Whether added
                                           to smoothies, stirred into oatmeal, or mixed into pancake batter, our cubes
