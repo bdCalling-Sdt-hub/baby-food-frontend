@@ -28,7 +28,12 @@ const ProductOverview = () => {
                   <div className="container">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                               <div className="order-last h-full">
-                                    <img alt="image" className="w-[80%] md:w-[50%]  mx-auto" src="/overview.png" />
+                                    <img
+                                          loading="lazy"
+                                          alt="image"
+                                          className="w-[80%] md:w-[50%]  mx-auto"
+                                          src="/overview.png"
+                                    />
                               </div>
 
                               {/* Text section with stagger animations */}

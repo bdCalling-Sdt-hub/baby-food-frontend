@@ -34,7 +34,12 @@ const ProductProcess = () => {
                   <div className="container">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
                               <div className="order-last h-full">
-                                    <img alt="image" className="md:size-[420px] w-[90%] mx-auto" src="/process.png" />
+                                    <img
+                                          loading="lazy"
+                                          alt="image"
+                                          className="md:size-[420px] w-[90%] mx-auto"
+                                          src="/process.png"
+                                    />
                               </div>
 
                               {/* Text section with stagger animations */}
