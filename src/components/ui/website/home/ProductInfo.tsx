@@ -28,7 +28,7 @@ export default function ProductInfo() {
             <div className="bg-[#d1e3b7] py-32">
                   <div className="container grid grid-cols-1 md:grid-cols-2 justify-center gap-10 items-center">
                         <div className="w-full">
-                              <img alt="image" className="w-full mx-auto" src="/about.png" />
+                              <img loading="lazy" alt="image" className="w-full mx-auto" src="/about.png" />
                         </div>
 
                         <motion.div
