@@ -71,7 +71,11 @@ const Ingredient = () => {
                                     </div>
                               </div>
                               <div className="col-span-6">
-                                    <img alt="image" className="mx-auto w-[100%] " src="/baby-product2.png" />
+                                    <img
+                                          alt="image"
+                                          className="mx-auto w-[90%] md:w-[400px] drop-shadow-xl"
+                                          src="/ingradient-image.png"
+                                    />
                               </div>
                               <div className="col-span-3">
                                     <div className="flex flex-col gap-5">

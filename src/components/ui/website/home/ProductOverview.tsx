@@ -24,14 +24,14 @@ const textVariants = {
 
 const ProductOverview = () => {
       return (
-            <div className="bg-[#F6E9A4] py-20  text-[#4c839a]">
+            <div className="bg-[#F6E9A4] py-20 text-[#4c839a]">
                   <div className="container">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-                              <div className="order-last h-full">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-end h-full">
+                              <div className="order-last flex items-center justify-center h-full">
                                     <img
                                           loading="lazy"
                                           alt="image"
-                                          className="w-[80%] md:w-[50%]  mx-auto"
+                                          className="w-[80%] md:w-[50%]"
                                           src="/overview.png"
                                     />
                               </div>

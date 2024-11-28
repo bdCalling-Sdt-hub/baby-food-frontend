@@ -24,20 +24,21 @@ const textVariants = {
 
 const ProductProcess = () => {
       return (
-            <div className="bg-[#21483B] py-10  ">
+            <div className="bg-[#21483B] py-20">
                   <div className="container text-center mb-10">
                         <img className="size-24 mx-auto" alt="image" src="/green_leaf.png" />
-                        <h1 className="text-[#64bc9b]  text-3xl oswald md:text-5xl font-medium tracking-wider">
+                        <h1 className="text-[#64bc9b] text-3xl oswald md:text-5xl font-medium tracking-wider">
                               Our Process: From Farm to Freezer
                         </h1>
                   </div>
                   <div className="container">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-                              <div className="order-last h-full">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                              {/* Updated image section with bottom-center alignment */}
+                              <div className="order-last flex items-center justify-center h-full">
                                     <img
                                           loading="lazy"
                                           alt="image"
-                                          className="md:size-[420px] w-[90%] mx-auto"
+                                          className="md:w-[420px] w-[90%]"
                                           src="/process.png"
                                     />
                               </div>
@@ -51,7 +52,7 @@ const ProductProcess = () => {
                                     viewport={{ once: false, amount: 0.5 }}
                               >
                                     <div>
-                                          <motion.h3 className="text-lg font-medium " variants={textVariants}>
+                                          <motion.h3 className="text-lg font-medium" variants={textVariants}>
                                                 1. Sourcing High-Quality, Organic Ingredients
                                           </motion.h3>
                                           <motion.p
@@ -64,7 +65,7 @@ const ProductProcess = () => {
                                           </motion.p>
                                     </div>
                                     <div>
-                                          <motion.h3 className="text-lg font-medium " variants={textVariants}>
+                                          <motion.h3 className="text-lg font-medium" variants={textVariants}>
                                                 2. Careful Preparation at Our Facility
                                           </motion.h3>
                                           <motion.p
@@ -77,7 +78,7 @@ const ProductProcess = () => {
                                           </motion.p>
                                     </div>
                                     <div>
-                                          <motion.h3 className="text-lg font-medium " variants={textVariants}>
+                                          <motion.h3 className="text-lg font-medium" variants={textVariants}>
                                                 3. Small-Batch Pureeing
                                           </motion.h3>
                                           <motion.p
@@ -90,7 +91,7 @@ const ProductProcess = () => {
                                           </motion.p>
                                     </div>
                                     <div>
-                                          <motion.h3 className="text-lg font-medium " variants={textVariants}>
+                                          <motion.h3 className="text-lg font-medium" variants={textVariants}>
                                                 4. Flash-Freezing to Lock in Freshness
                                           </motion.h3>
                                           <motion.p
