@@ -73,8 +73,8 @@ const Ingredient = () => {
                               <div className="col-span-6">
                                     <img
                                           alt="image"
-                                          className="mx-auto w-[90%] md:w-[400px] drop-shadow-xl"
-                                          src="/ingradient-image.png"
+                                          className="mx-auto w-full h-full drop-shadow-xl"
+                                          src="/baby-product2.png"
                                     />
                               </div>
                               <div className="col-span-3">

@@ -49,8 +49,8 @@ export default function HeroSection() {
                               {/* Foreground product image with smooth fade-in and slide-up */}
                               <motion.img
                                     loading="lazy"
-                                    className="absolute w-[32%] md:w-[390px] mx-auto drop-shadow-2xl"
-                                    src="/hero-image.png"
+                                    className="absolute w-[65%] mx-auto drop-shadow-2xl"
+                                    src="/baby-product.png"
                                     alt=""
                                     initial="hidden"
                                     animate="visible"
