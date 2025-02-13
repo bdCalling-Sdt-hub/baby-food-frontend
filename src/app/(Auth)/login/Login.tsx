@@ -15,7 +15,7 @@ const Login = () => {
             try {
                   const res = await loginAdmin(values).unwrap();
                   if (res.success) {
-                        setAccessToken(res.data);
+                        // setAccessToken(res.data);
                         localStorage.setItem('accessToken', res.data);
                         message.success(res.message);
                         router.push('/');
